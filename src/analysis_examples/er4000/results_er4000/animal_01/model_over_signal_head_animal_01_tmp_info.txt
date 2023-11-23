@@ -1,0 +1,23 @@
+Protocol name: animal_01
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/er4000/data/1_control_dl\control_dl_temp_animal_03.asc
+ZT 0 time: 20
+Cycle types: ['DL', 'DD', 'DD', 'DD', 'DL']
+Cycle days: [8, 31, 23, 22, 14]
+Test labels: ['1_control_dl', '2_control_dd', '3_induction_dd', '4_hypo_dd', '5_hypo_dl']
+Consider first day: False
+Set NaNs: []
+Start date: 2022-06-08 00:00:00
+End date: 2022-09-08 15:00:00
+Sampling interval: 1H
+Sampling frequency: 0.0002777777777777778
+------------------------------------------------------------
+Normalized: False
+Resampled: True (new sampling interval: 1H, method: last)
+Filtered: True (type: moving_average, window: 3, order: 2)
+------------------------------------------------------------
+model_over_signal parameters:
+position: head
+mv_avg_window: 1
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/er4000\results_er4000\animal_01
+save_suffix: tmp
+format: .svg

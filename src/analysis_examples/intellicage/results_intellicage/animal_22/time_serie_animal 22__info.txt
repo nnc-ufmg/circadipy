@@ -1,0 +1,25 @@
+Protocol name: animal_22
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/intellicage/data_after_unwrapping\data_animal_22.txt
+ZT 0 time: 20
+Cycle types: ['LD', 'DD', 'DD', 'DD', 'LD']
+Cycle days: [12, 29, 23, 20, 12]
+Test labels: ['1_control_dl', '2_control_dd', '3_induction_dd', '4_hypo_dd', '5_hypo_dl']
+Consider first day: False
+Set NaNs: []
+Start date: 2022-06-03 00:00:00
+End date: 2022-09-06 03:00:00
+Sampling interval: 1H
+Sampling frequency: 0.0002777777777777778
+------------------------------------------------------------
+Normalized: True (type: minmax, per_day: True)
+Resampled: True (new sampling interval: 1H, method: sum)
+Filtered: True (type: moving_average, window: 3, order: 2)
+------------------------------------------------------------
+time_serie parameters:
+title: Time Series
+x_label: TIME (DAYS)
+y_label: VISITS
+color: midnightblue
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/intellicage\results_intellicage\animal_22
+save_suffix: 
+format: .svg
