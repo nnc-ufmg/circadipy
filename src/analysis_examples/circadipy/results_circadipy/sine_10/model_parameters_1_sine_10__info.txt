@@ -1,0 +1,22 @@
+Protocol name: 1_sine_10
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_1_sine_10.asc
+ZT 0 time: 0
+Cycle types: ['DD', 'DD']
+Cycle days: [6, 6]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-12T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+model_overview_detailed parameters:
+only_significant: False
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sine_10
+save_suffix: 
+format: .svg

@@ -1,0 +1,23 @@
+Protocol name: 9_sine_0.5
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_9_sine_0.5.asc
+ZT 0 time: 0
+Cycle types: ['DD', 'DD']
+Cycle days: [9, 4]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-13T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+model_over_signal parameters:
+position: head
+mv_avg_window: 1
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sine_0.5
+save_suffix: 
+format: .svg

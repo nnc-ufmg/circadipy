@@ -1,0 +1,23 @@
+Protocol name: 10504775_Col15a1
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadb/data_jtk/10504775_Col15a1.asc
+ZT 0 time: 0
+Cycle types: ['LD']
+Cycle days: [3]
+Test labels: ['Gene']
+Consider first day: True
+Set NaNs: []
+Start date: 2020-01-01T18:00:00.000000
+End date: 2020-01-03T16:00:00.000000
+Sampling interval: 2H
+Sampling frequency: 0.0001388888888888889
+------------------------------------------------------------
+Normalized: True (type: minmax, per_day: False)
+Resampled: False
+Filtered: True (type: moving_average, window: 3, order: 2)
+------------------------------------------------------------
+model_over_signal parameters:
+position: head
+mv_avg_window: 1
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadb/results_jtk/
+save_suffix: 
+format: .svg

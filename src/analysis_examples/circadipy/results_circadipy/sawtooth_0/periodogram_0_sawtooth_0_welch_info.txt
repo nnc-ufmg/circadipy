@@ -1,0 +1,25 @@
+Protocol name: 0_sawtooth_0
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_0_sawtooth.asc
+ZT 0 time: 0
+Cycle types: ['DD', 'DD']
+Cycle days: [7, 6]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-13T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+data_periodogram parameters:
+time_shape: continuous
+method: welch
+max_period: 48
+unit_of_measurement: AMPLITUDE
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_0
+save_suffix: welch
+format: .svg

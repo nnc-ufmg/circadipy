@@ -1,0 +1,24 @@
+Protocol name: 8_sawtooth_01
+File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_8_sawtooth_01.asc
+ZT 0 time: 0
+Cycle types: ['DD', 'DD']
+Cycle days: [10, 4]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-14T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+actogram_bar parameters:
+first_hour: 18
+save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_01
+save_suffix: bar
+adjust_figure: [2, 0.95, 0.8, 0.2, 0.05]
+norm_value: None
+format: .svg
