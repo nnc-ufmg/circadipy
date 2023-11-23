@@ -165,5 +165,5 @@ cython_debug/
 /docs/build
 
 # Data in proceass of submission
-src/circadipy/analysis_examples/intellicage/data_after_unwrapping/
-src/circadipy/analysis_examples/er4000/data/
+.src/circadipy/analysis_examples/intellicage/data_after_unwrapping/
+.src/circadipy/analysis_examples/er4000/data/
