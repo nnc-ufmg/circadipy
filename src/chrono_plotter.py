@@ -257,7 +257,7 @@ def actogram_bar(protocol, first_hour = 0, save_folder = None, save_suffix = '',
     :save_suffix: Suffix to add to the file name, defaults to ''
     :type save_suffix: str
     :param adjust_figure: List with the parameters to adjust the figure [column_height, rigth, top, bottom, left],
-    defaults to [1, 0.95, 0.85, 0.2, 0.05]
+        defaults to [1, 0.95, 0.85, 0.2, 0.05]
     :type adjust_figure: list
     :param norm_value: List with the minimum and maximum values to be used in to y axis limits (it is used when the data have nan valuesa and the data variabilty is too high), defaults to None
     :param format: Format to save the figure (png or svg), defaults to 'png'
@@ -441,14 +441,14 @@ def actogram_colormap(protocol, first_hour = 0, unit_of_measurement = "Amplitude
     :param first_hour: First hour of the day to be plotted, if different from 0, the actogram is shifted, defaults to 0
     :type first_hour: int
     :param unit_of_measurement: Unit of measurement of the protocol, defaults to "Amplitude". This is used to label the
-    colorbar
+        colorbar
     :type unit_of_measurement: str
     :param save_folder: Path to save the folder if it is None, the plot is just shown, defaults to None
     :type save_folder: str
     :save_suffix: Suffix to add to the file name, defaults to ''
     :type save_suffix: str
     :param adjust_figure: List with the parameters to adjust the figure [column_height, rigth, top, bottom, left],
-    defaults to [1, 0.95, 0.85, 0.2, 0.05]
+        defaults to [1, 0.95, 0.85, 0.2, 0.05]
     :type adjust_figure: list
     :param norm_color: List with the minimum and maximum values to be used in the colormap, defaults to [33, 40]
     :type norm_color: list
@@ -645,16 +645,16 @@ def data_periodogram(protocol, time_shape = 'continuous', method = 'periodogram'
     :param protocol: Protocol object to be vizualized
     :type protocol: read_protocol
     :param time_shape: Time shape to be used, can be 'continuous', 'median' or 'mean', defaults to 'continuous'. If
-    'continuous', the periodogram is calculated using the whole protocol data, if 'median' or 'mean', the periodogram
-    is calculates using the median or mean of the data per day
+        'continuous', the periodogram is calculated using the whole protocol data, if 'median' or 'mean', the periodogram
+        is calculates using the median or mean of the data per day
     :type time_shape: str
     :param method: Method to be used to calculate the periodogram, can be 'periodogram' or 'welch', defaults to
-    'periodogram'
+        'periodogram'
     :type method: str
     :param max_period: Maximum period to be plotted, defaults to 48
     :type max_period: int
     :param unit_of_measurement: Unit of measurement of the protocol, defaults to "Unit". This is used to label the
-    y axis
+        y axis
     :type unit_of_measurement: str
     :param save_folder: Path to save the folder if it is None, the plot is just shown, defaults to None
     :type save_folder: str
@@ -1001,11 +1001,11 @@ def model_over_signal(protocol, best_models, position = 'head', mv_avg_window = 
     :param best_models: Cosinor model parameters (output of the fit_cosinor function)
     :type best_models: pandas.DataFrame
     :param position: Position of the data to be plotted, can be 'head' or 'tail', defaults to 'head'. If 'tail', the
-    last part of the data is plotted inverted (first point is the last point of the data, the second point is the
-    penultimate point of the data, etc.)
+        last part of the data is plotted inverted (first point is the last point of the data, the second point is the
+        penultimate point of the data, etc.)
     :type position: str
     :param mv_avg_window: Window size to apply a moving average to the data, defaults to 1. If 1, no moving average is
-    applied.
+        applied.
     :type mv_avg_window: int
     :param save_folder: Path to save the folder if it is None, the plot is just shown, defaults to None
     :type save_folder: str
@@ -1311,7 +1311,7 @@ def model_per_day(protocol, best_models_per_day, day_window, only_significant = 
     :param best_models_per_day: Cosinor model parameters per day (output of the fit_cosinor_fixed_period function)
     :type best_models_per_day: pandas.DataFrame
     :param day_window: Window size to apply a moving average to the data, defaults to 1. If 1, no moving average is
-    applied.
+        applied.
     :type day_window: int
     :param only_significant: If True, only the significant days are plotted, defaults to False
     :type only_significant: bool

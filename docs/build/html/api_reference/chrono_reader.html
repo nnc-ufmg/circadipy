@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chrono reader &mdash; circadipy 0.1 documentation</title>
@@ -11,11 +11,12 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -51,9 +52,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/package_manager.html">Package and Environment Management System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/env_creation.html">Environment Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipelines.html">Introduction tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api_description.html">API description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chrono_plotter.html">Chrono plotter</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Chrono reader</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#chrono_reader.intellicage_unwrapper"><code class="docutils literal notranslate"><span class="pre">intellicage_unwrapper()</span></code></a></li>
@@ -63,10 +66,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.correct_labels"><code class="docutils literal notranslate"><span class="pre">read_protocol.correct_labels()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.delete_first_days"><code class="docutils literal notranslate"><span class="pre">read_protocol.delete_first_days()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.delete_last_days"><code class="docutils literal notranslate"><span class="pre">read_protocol.delete_last_days()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.delete_period"><code class="docutils literal notranslate"><span class="pre">read_protocol.delete_period()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.get_cosinor_df"><code class="docutils literal notranslate"><span class="pre">read_protocol.get_cosinor_df()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.get_is_nan_indexes"><code class="docutils literal notranslate"><span class="pre">read_protocol.get_is_nan_indexes()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.get_last_days_data"><code class="docutils literal notranslate"><span class="pre">read_protocol.get_last_days_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.get_specific_days_data"><code class="docutils literal notranslate"><span class="pre">read_protocol.get_specific_days_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.make_info_text"><code class="docutils literal notranslate"><span class="pre">read_protocol.make_info_text()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.normalize_data"><code class="docutils literal notranslate"><span class="pre">read_protocol.normalize_data()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.read_asc_0"><code class="docutils literal notranslate"><span class="pre">read_protocol.read_asc_0()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#chrono_reader.read_protocol.read_asc_2"><code class="docutils literal notranslate"><span class="pre">read_protocol.read_asc_2()</span></code></a></li>
@@ -79,7 +84,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="chrono_simulation.html">Chrono simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chrono_rithm.html">Chrono rithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chrono_rhythm.html">Chrono rhythm</a></li>
 </ul>
 
         </div>
@@ -120,7 +125,8 @@ of time, because the Intellicage system saves the visits with irregular interval
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>files</strong> (<em>list</em>) – List with the files to be unwrapped</p></li>
-<li><p><strong>name_to_save</strong> (<em>str</em>) – Folder to save the data, if not specified, the data will be saved in the same folder as the files in a folder called ‘data_unwrapped’</p></li>
+<li><p><strong>name_to_save</strong> (<em>str</em>) – Folder to save the data, if not specified, the data will be saved in the same folder as the
+files in a folder called ‘data_unwrapped’</p></li>
 <li><p><strong>sampling_interval</strong> (<em>str</em>) – Sampling interval to get the visits (output sampling interval), defaults to ‘1H’</p></li>
 </ul>
 </dd>
@@ -129,7 +135,7 @@ of time, because the Intellicage system saves the visits with irregular interval
 
 <dl class="py class">
 <dt class="sig sig-object py" id="chrono_reader.read_protocol">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chrono_reader.</span></span><span class="sig-name descname"><span class="pre">read_protocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zt_0_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consider_first_day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_nans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chrono_reader.</span></span><span class="sig-name descname"><span class="pre">read_protocol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zt_0_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consider_first_day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_nans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">array([],</span> <span class="pre">dtype=float64)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Return a list of random ingredients as strings.</p>
 <dl class="field-list simple">
@@ -138,7 +144,9 @@ of time, because the Intellicage system saves the visits with irregular interval
 <li><p><strong>name</strong> (<em>str</em>) – Name of the protocol</p></li>
 <li><p><strong>file_activity</strong> (<em>str</em>) – Path to the data file (can be a .asc if the type is generic)</p></li>
 <li><p><strong>zt_0_time</strong> (<em>int</em>) – Time of day that corresponds to ZT0 reference (can only be integers from 0 to 23)</p></li>
-<li><p><strong>labels_dict</strong> (<em>dict</em>) – Dictionary with the cycle types, cycle days and test labels. The cycle types must be a list of strings with the cycle types (DD, LL, DL or LD), the cycle days must be a list of integers with the number of days of each cycle and the test labels must be a list of strings with the test labels (e.g. [‘test1’, ‘test2’, ‘test3’])</p></li>
+<li><p><strong>labels_dict</strong> (<em>dict</em>) – Dictionary with the cycle types, cycle days and test labels. The cycle types must be a list of strings
+with the cycle types (DD, LL, DL or LD), the cycle days must be a list of integers with the number of days of each cycle
+and the test labels must be a list of strings with the test labels (e.g. [‘test1’, ‘test2’, ‘test3’])</p></li>
 <li><p><strong>consider_first_day</strong> (<em>bool</em>) – Consider the first day of the experiment as a complete day, defaults to False</p></li>
 <li><p><strong>set_nans</strong> (<em>list</em>) – List of integers with the indexes of the NaN values that will be set to 0, defaults to []</p></li>
 </ul>
@@ -159,8 +167,10 @@ Savitzky-Golay and moving average filter are a type of low-pass filter, particul
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>type</strong> (<em>str</em>) – Type of filter to apply: Savitzky-Golay (‘savgol’) filter or move average (‘moving_average’) filter,  defaults to ‘savgol’.</p></li>
-<li><p><strong>window</strong> (<em>int</em>) – The length of the filter window (i.e. the number of coefficients). Must be a positive odd integer, defaults to 5</p></li>
+<li><p><strong>type</strong> (<em>str</em>) – Type of filter to apply: Savitzky-Golay (‘savgol’) filter or move average (‘moving_average’) filter,
+defaults to ‘savgol’.</p></li>
+<li><p><strong>window</strong> (<em>int</em>) – The length of the filter window (i.e. the number of coefficients). Must be a positive odd integer,
+defaults to 5</p></li>
 <li><p><strong>order</strong> (<em>int</em>) – The order of the polynomial used to fit the samples. Must be less then window size, defaults to 3</p></li>
 <li><p><strong>reverse</strong> (<em>bool</em>) – Revert the filter, defaults to False</p></li>
 </ul>
@@ -177,7 +187,8 @@ The second protocol will be concatenated to the first one inplace.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>protocol</strong> (<em>Protocol</em>) – Protocol to concatenate</p></li>
-<li><p><strong>method</strong> (<em>str</em>) – Method to concatenate the data. Use ‘sum’ to sum the values in the new sampling interval or  ‘last’ to get the last value in the new sampling interval</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Method to concatenate the data. Use ‘sum’ to sum the values in the new sampling interval or
+‘last’ to get the last value in the new sampling interval</p></li>
 </ul>
 </dd>
 </dl>
@@ -301,6 +312,20 @@ The second protocol will be concatenated to the first one inplace.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="chrono_reader.read_protocol.delete_period">
+<span class="sig-name descname"><span class="pre">delete_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first_day_between</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_day_between</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol.delete_period" title="Permalink to this definition"></a></dt>
+<dd><p>Delete the days between the two parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first_day_between</strong> – First day in the interval to be deleted</p></li>
+<li><p><strong>last_day_between</strong> – Last day in the interval to be deleted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="chrono_reader.read_protocol.get_cosinor_df">
 <span class="sig-name descname"><span class="pre">get_cosinor_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'continuous'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol.get_cosinor_df" title="Permalink to this definition"></a></dt>
 <dd><p>Get the dataframe to be used in cosinor analysis (CosinorPy input). Each dataframe contains three columns:
@@ -310,7 +335,8 @@ columns can be ‘continuous’ (range from 0 to the total number of hours) or �
 median will be calculated for each day.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>time_shape</strong> (<em>str</em>) – Shape of the time variable. Set ‘continuous’ for a continuous variable or ‘mean’/’median’ for a clycic time columns, defaults to ‘continuous’</p>
+<dd class="field-odd"><p><strong>time_shape</strong> (<em>str</em>) – Shape of the time variable. Set ‘continuous’ for a continuous variable or ‘mean’/’median’ for
+a clycic time columns, defaults to ‘continuous’</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Dataframes with activity and temperature data</p>
@@ -368,6 +394,11 @@ the test labels must be a list with the test labels to get the data from.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="chrono_reader.read_protocol.make_info_text">
+<span class="sig-name descname"><span class="pre">make_info_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol.make_info_text" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="chrono_reader.read_protocol.normalize_data">
 <span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'minmax'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chrono_reader.read_protocol.normalize_data" title="Permalink to this definition"></a></dt>
 <dd><p>Normalize the data using the z-score or minmax method. The z-score method subtracts the mean of the data and
@@ -377,7 +408,8 @@ between the maximum and minimum values.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>type</strong> (<em>str</em>) – Type of normalization to apply, can be ‘zscore’ or ‘minmax’, defaults to ‘minmax’</p></li>
-<li><p><strong>per_day</strong> (<em>bool</em>) – Normalize the data. If True, the normalization will be done per day, if False, the normalization will be done for the whole data, defaults to False</p></li>
+<li><p><strong>per_day</strong> (<em>bool</em>) – Normalize the data. If True, the normalization will be done per day, if False, the normalization
+will be done for the whole data, defaults to False</p></li>
 </ul>
 </dd>
 </dl>
@@ -416,7 +448,8 @@ activity is a float number.
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>new_sampling_interval</strong> (<em>str</em>) – New sampling interval in pandas format (e.g. ‘30T’ for 30 minutes)</p></li>
-<li><p><strong>method</strong> – Method to resample the data. Use ‘sum’ to sum the values in the new sampling interval or ‘last’ to get the last value in the new sampling interval</p></li>
+<li><p><strong>method</strong> – Method to resample the data. Use ‘sum’ to sum the values in the new sampling interval or ‘last’ to
+get the last value in the new sampling interval</p></li>
 </ul>
 </dd>
 </dl>
@@ -441,9 +474,12 @@ type after the data is imported.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>number_of_days</strong> (<em>list</em>) – Number of days to be used in each test label, the sum of the days must be equal to the number of days in the experiment</p></li>
-<li><p><strong>test_labels</strong> (<em>list</em>) – Test labels to be used in the analysis, must be a list of strings with the same length of number_of_days</p></li>
-<li><p><strong>cycle_types</strong> (<em>list</em>) – Cycle types to be used in the analysis, must be a list of strings with the same length of number_of_days</p></li>
+<li><p><strong>number_of_days</strong> (<em>list</em>) – Number of days to be used in each test label, the sum of the days must be equal to the
+number of days in the experiment</p></li>
+<li><p><strong>test_labels</strong> (<em>list</em>) – Test labels to be used in the analysis, must be a list of strings with the same length of
+number_of_days</p></li>
+<li><p><strong>cycle_types</strong> (<em>list</em>) – Cycle types to be used in the analysis, must be a list of strings with the same length of
+number_of_days</p></li>
 </ul>
 </dd>
 </dl>
