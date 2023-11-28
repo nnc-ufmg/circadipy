@@ -1,7 +1,7 @@
 Protocol name: 5_sawtooth_01
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_5_sawtooth_01.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_5_sawtooth_01.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [5, 6]
 Test labels: ['1', '2']
 Consider first day: True
@@ -17,6 +17,6 @@ Filtered: False
 ------------------------------------------------------------
 model_overview_detailed parameters:
 only_significant: False
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_01
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_01
 save_suffix: 
 format: .svg

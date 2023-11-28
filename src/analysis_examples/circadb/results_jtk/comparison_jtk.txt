@@ -1,304 +1,604 @@
 
 ------------------------------------------------------------------
-Gene: Arntl (jtk)
-CircadiPy: 23.610000000000564 Other: 24.0
-The period error for 0 is: -0.3899999999994357
-CircadiPy: -0.0324624624628953 Other: 0.0
-The phase error for 0 is: -0.0324624624628953
-------------------------------------------------------------------
-Gene: Fbn1 (jtk)
-CircadiPy: 23.290000000000514 Other: 24.0
-The period error for 1 is: -0.7099999999994857
-CircadiPy: 2.998938938939137 Other: 3.0
-The phase error for 1 is: -0.001061061060863011
-------------------------------------------------------------------
-Gene: Per3 (jtk)
-CircadiPy: 23.240000000000506 Other: 24.0
-The period error for 2 is: -0.7599999999994935
-CircadiPy: 11.26134134134172 Other: 12.0
-The phase error for 2 is: -0.7386586586582808
-------------------------------------------------------------------
-Gene: Nat15 (jtk)
-CircadiPy: 24.99000000000078 Other: 26.0
-The period error for 3 is: -1.00999999999922
-CircadiPy: 16.413453453454153 Other: 17.0
-The phase error for 3 is: -0.586546546545847
-------------------------------------------------------------------
-Gene: Rhobtb1 (jtk)
-CircadiPy: 23.550000000000555 Other: 24.0
-The period error for 4 is: -0.44999999999944507
-CircadiPy: 12.811711711712157 Other: 13.0
-The phase error for 4 is: -0.18828828828784339
-------------------------------------------------------------------
-Gene: Per2 (jtk)
-CircadiPy: 23.72000000000058 Other: 24.0
-The period error for 5 is: -0.2799999999994185
-CircadiPy: 12.377657657658105 Other: 13.0
-The phase error for 5 is: -0.622342342341895
-------------------------------------------------------------------
 Gene: Rasgrp3 (jtk)
 CircadiPy: 25.450000000000852 Other: 26.0
-The period error for 6 is: -0.5499999999991481
-CircadiPy: 23.095095095095267 Other: 23.0
-The phase error for 6 is: 0.09509509509526737
-------------------------------------------------------------------
-Gene: Timp3 (jtk)
-CircadiPy: 22.990000000000467 Other: 23.0
-The period error for 7 is: -0.009999999999532605
-CircadiPy: 13.146826826827215 Other: 14.0
-The phase error for 7 is: -0.8531731731727845
-------------------------------------------------------------------
-Gene: Tef (jtk)
-CircadiPy: 23.410000000000533 Other: 24.0
-The period error for 8 is: -0.589999999999467
-CircadiPy: 12.606146146146564 Other: 13.0
-The phase error for 8 is: -0.39385385385343596
-------------------------------------------------------------------
-Gene: Nr1d1 (jtk)
-CircadiPy: 23.490000000000546 Other: 24.0
-The period error for 9 is: -0.5099999999994544
-CircadiPy: 6.9324324324327335 Other: 7.0
-The phase error for 9 is: -0.06756756756726645
-------------------------------------------------------------------
-Gene: Spon2 (jtk)
-CircadiPy: 22.460000000000385 Other: 22.0
-The period error for 10 is: 0.46000000000038455
-CircadiPy: 1.3742542542543799 Other: 2.0
-The phase error for 10 is: -0.6257457457456201
-------------------------------------------------------------------
-Gene: Fmo2 (jtk)
-CircadiPy: 23.670000000000574 Other: 24.0
-The period error for 11 is: -0.3299999999994263
-CircadiPy: 14.708288288288788 Other: 15.0
-The phase error for 11 is: -0.291711711711212
-------------------------------------------------------------------
-Gene: Rcan1 (jtk)
-CircadiPy: 24.050000000000633 Other: 24.0
-The period error for 12 is: 0.050000000000633094
-CircadiPy: -1.0907407407412428 Other: 0.0
-The phase error for 12 is: -1.0907407407412428
+The period error for 0 is: -0.5499999999991481
+CircadiPy: 29.095095095095267 Other: 29.0
+The phase error for 0 is: 0.09509509509526737
 ------------------------------------------------------------------
 Gene: Ypel2 (jtk)
 CircadiPy: 24.34000000000068 Other: 24.0
-The period error for 13 is: 0.3400000000006784
-CircadiPy: 20.582622622622694 Other: 21.0
-The phase error for 13 is: -0.4173773773773064
-------------------------------------------------------------------
-Gene: Nr1d2 (jtk)
-CircadiPy: 23.27000000000051 Other: 24.0
-The period error for 14 is: -0.7299999999994888
-CircadiPy: 10.305305305305662 Other: 11.0
-The phase error for 14 is: -0.6946946946943378
-------------------------------------------------------------------
-Gene: Slc41a3 (jtk)
-CircadiPy: 23.680000000000575 Other: 24.0
-The period error for 15 is: -0.31999999999942474
-CircadiPy: 1.3007407407409168 Other: 2.0
-The phase error for 15 is: -0.6992592592590832
+The period error for 1 is: 0.3400000000006784
+CircadiPy: 26.582622622622694 Other: 27.0
+The phase error for 1 is: -0.4173773773773064
 ------------------------------------------------------------------
 Gene: Adam19 (jtk)
 CircadiPy: 23.880000000000607 Other: 24.0
-The period error for 16 is: -0.11999999999939348
-CircadiPy: 22.589549549549666 Other: 23.0
-The phase error for 16 is: -0.4104504504503339
-------------------------------------------------------------------
-Gene: Clock (jtk)
-CircadiPy: 23.39000000000053 Other: 24.0
-The period error for 17 is: -0.6099999999994701
-CircadiPy: 0.5089289289290768 Other: 0.0
-The phase error for 17 is: 0.5089289289290768
-------------------------------------------------------------------
-Gene: Fabp7 (jtk)
-CircadiPy: 23.560000000000556 Other: 24.0
-The period error for 18 is: -0.4399999999994435
-CircadiPy: 2.8202602602604685 Other: 3.0
-The phase error for 18 is: -0.1797397397395315
-------------------------------------------------------------------
-Gene: Kdr (jtk)
-CircadiPy: 23.530000000000552 Other: 24.0
-The period error for 19 is: -0.4699999999994482
-CircadiPy: 0.7834234234235815 Other: 1.0
-The phase error for 19 is: -0.2165765765764185
-------------------------------------------------------------------
-Gene: Tcap (jtk)
-CircadiPy: 23.690000000000577 Other: 24.0
-The period error for 20 is: -0.3099999999994232
-CircadiPy: 9.745905905906287 Other: 10.0
-The phase error for 20 is: -0.25409409409371264
-------------------------------------------------------------------
-Gene: Angptl7 (jtk)
-CircadiPy: 24.300000000000672 Other: 24.0
-The period error for 21 is: 0.3000000000006722
-CircadiPy: 16.037837837838453 Other: 17.0
-The phase error for 21 is: -0.9621621621615475
-------------------------------------------------------------------
-Gene: Slc46a3 (jtk)
-CircadiPy: 23.06000000000048 Other: 24.0
-The period error for 22 is: -0.9399999999995217
-CircadiPy: 15.144104104104542 Other: 16.0
-The phase error for 22 is: -0.8558958958954577
-------------------------------------------------------------------
-Gene: Gm4956 (jtk)
-CircadiPy: 21.73000000000027 Other: 22.0
-The period error for 23 is: -0.26999999999972957
-CircadiPy: 14.098618618618872 Other: 15.0
-The phase error for 23 is: -0.9013813813811282
+The period error for 2 is: -0.11999999999939348
+CircadiPy: 28.589549549549666 Other: 29.0
+The phase error for 2 is: -0.4104504504503339
 ------------------------------------------------------------------
 Gene: Tmem171 (jtk)
 CircadiPy: 23.550000000000555 Other: 24.0
-The period error for 24 is: -0.44999999999944507
-CircadiPy: 22.148948948949048 Other: 22.0
-The phase error for 24 is: 0.1489489489490481
+The period error for 3 is: -0.44999999999944507
+CircadiPy: 28.148948948949048 Other: 28.0
+The phase error for 3 is: 0.1489489489490481
 ------------------------------------------------------------------
 Gene: nan (jtk)
 CircadiPy: 23.930000000000614 Other: 24.0
-The period error for 25 is: -0.06999999999938566
-CircadiPy: 22.024264264264364 Other: 22.0
-The phase error for 25 is: 0.02426426426436379
-------------------------------------------------------------------
-Gene: Hlf (jtk)
-CircadiPy: 23.26000000000051 Other: 24.0
-The period error for 26 is: -0.7399999999994904
-CircadiPy: 12.021261261261657 Other: 12.0
-The phase error for 26 is: 0.021261261261656728
+The period error for 4 is: -0.06999999999938566
+CircadiPy: 28.024264264264364 Other: 28.0
+The phase error for 4 is: 0.02426426426436379
 ------------------------------------------------------------------
 Gene: Tead1 (jtk)
 CircadiPy: 25.140000000000803 Other: 25.0
-The period error for 27 is: 0.14000000000080348
-CircadiPy: 20.717837837837923 Other: 21.0
-The phase error for 27 is: -0.2821621621620771
-------------------------------------------------------------------
-Gene: Tspan4 (jtk)
-CircadiPy: 23.470000000000542 Other: 24.0
-The period error for 28 is: -0.5299999999994576
-CircadiPy: 11.009289289289683 Other: 11.5
-The phase error for 28 is: -0.49071071071031724
-------------------------------------------------------------------
-Gene: Colq (jtk)
-CircadiPy: 23.310000000000517 Other: 24.0
-The period error for 29 is: -0.6899999999994826
-CircadiPy: 0.11333333333347184 Other: 0.0
-The phase error for 29 is: 0.11333333333347184
-------------------------------------------------------------------
-Gene: Fam161b (jtk)
-CircadiPy: 23.170000000000496 Other: 24.0
-The period error for 30 is: -0.8299999999995045
-CircadiPy: 18.139159159159163 Other: 18.0
-The phase error for 30 is: 0.13915915915916344
-------------------------------------------------------------------
-Gene: Rorc (jtk)
-CircadiPy: 24.380000000000685 Other: 25.0
-The period error for 31 is: -0.6199999999993153
-CircadiPy: 19.269029029029067 Other: 19.0
-The phase error for 31 is: 0.2690290290290669
-------------------------------------------------------------------
-Gene: Tspan18 (jtk)
-CircadiPy: 24.260000000000666 Other: 24.0
-The period error for 32 is: 0.2600000000006659
-CircadiPy: 0.16820820820837667 Other: 0.0
-The phase error for 32 is: 0.16820820820837667
-------------------------------------------------------------------
-Gene: Npas2 (jtk)
-CircadiPy: 23.430000000000536 Other: 24.0
-The period error for 33 is: -0.5699999999994638
-CircadiPy: 0.47315315315330153 Other: 0.0
-The phase error for 33 is: 0.47315315315330153
-------------------------------------------------------------------
-Gene: Dbp (jtk)
-CircadiPy: 23.050000000000477 Other: 24.0
-The period error for 34 is: -0.9499999999995232
-CircadiPy: 10.151151151151481 Other: 10.5
-The phase error for 34 is: -0.34884884884851886
-------------------------------------------------------------------
-Gene: Pik3r1 (jtk)
-CircadiPy: 24.130000000000646 Other: 24.0
-The period error for 35 is: 0.1300000000006456
-CircadiPy: 14.434414414414963 Other: 15.0
-The phase error for 35 is: -0.5655855855850369
-------------------------------------------------------------------
-Gene: Mid1ip1 (jtk)
-CircadiPy: 23.690000000000577 Other: 24.0
-The period error for 36 is: -0.3099999999994232
-CircadiPy: 13.919519519520005 Other: 15.0
-The phase error for 36 is: -1.080480480479995
-------------------------------------------------------------------
-Gene: Fgf13 (jtk)
-CircadiPy: 24.170000000000652 Other: 24.0
-The period error for 37 is: 0.17000000000065185
-CircadiPy: 10.597217217217665 Other: 11.0
-The phase error for 37 is: -0.40278278278233515
+The period error for 5 is: 0.14000000000080348
+CircadiPy: 26.717837837837923 Other: 27.0
+The phase error for 5 is: -0.2821621621620771
 ------------------------------------------------------------------
 Gene: Tead1 (jtk)
 CircadiPy: 24.92000000000077 Other: 25.0
-The period error for 38 is: -0.07999999999923091
-CircadiPy: 20.74394394394403 Other: 21.0
-The phase error for 38 is: -0.2560560560559715
-------------------------------------------------------------------
-Gene: Podn (jtk)
-CircadiPy: 24.09000000000064 Other: 24.0
-The period error for 39 is: 0.09000000000063935
-CircadiPy: 15.027507507508062 Other: 16.0
-The phase error for 39 is: -0.9724924924919378
-------------------------------------------------------------------
-Gene: Foxj2 (jtk)
-CircadiPy: 23.660000000000572 Other: 24.0
-The period error for 40 is: -0.33999999999942787
-CircadiPy: -0.40222222222266524 Other: 0.0
-The phase error for 40 is: -0.40222222222266524
-------------------------------------------------------------------
-Gene: 9030425E11Rik (jtk)
-CircadiPy: 24.22000000000066 Other: 24.0
-The period error for 41 is: 0.22000000000065967
-CircadiPy: 0.9823423423425304 Other: 2.0
-The phase error for 41 is: -1.0176576576574696
+The period error for 6 is: -0.07999999999923091
+CircadiPy: 26.74394394394403 Other: 27.0
+The phase error for 6 is: -0.2560560560559715
 ------------------------------------------------------------------
 Gene: Akap1 (jtk)
 CircadiPy: 24.28000000000067 Other: 24.0
-The period error for 42 is: 0.28000000000066905
-CircadiPy: 23.006686686686823 Other: 23.5
-The phase error for 42 is: -0.49331331331317685
+The period error for 7 is: 0.28000000000066905
+CircadiPy: 29.006686686686823 Other: 29.5
+The phase error for 7 is: -0.49331331331317685
 ------------------------------------------------------------------
-Gene: Fbln2 (jtk)
+Gene: BC018507 (jtk)
+CircadiPy: 24.60000000000072 Other: 24.0
+The period error for 8 is: 0.6000000000007191
+CircadiPy: 27.792192192192303 Other: 29.0
+The phase error for 8 is: -1.207807807807697
+------------------------------------------------------------------
+Gene: Irs1 (jtk)
+CircadiPy: 22.81000000000044 Other: 24.0
+The period error for 9 is: -1.1899999999995607
+CircadiPy: 30.164864864864985 Other: 29.0
+The phase error for 9 is: 1.1648648648649846
+------------------------------------------------------------------
+Gene: Plekhg1 (jtk)
+CircadiPy: 25.1100000000008 Other: 24.0
+The period error for 10 is: 1.1100000000007988
+CircadiPy: 28.27297297297311 Other: 29.0
+The phase error for 10 is: -0.7270270270268888
+------------------------------------------------------------------
+Gene: Atf6 (jtk)
+CircadiPy: 24.22000000000066 Other: 24.0
+The period error for 11 is: 0.22000000000065967
+CircadiPy: 25.309189189189222 Other: 26.0
+The phase error for 11 is: -0.6908108108107776
+------------------------------------------------------------------
+Gene: Fam124b (jtk)
+CircadiPy: 23.660000000000572 Other: 24.0
+The period error for 12 is: -0.33999999999942787
+CircadiPy: 28.78410410410422 Other: 29.0
+The phase error for 12 is: -0.2158958958957804
+------------------------------------------------------------------
+Gene: Unc119b (jtk)
+CircadiPy: 23.500000000000547 Other: 24.0
+The period error for 13 is: -0.4999999999994529
+CircadiPy: 28.093093093093188 Other: 28.0
+The phase error for 13 is: 0.09309309309318792
+------------------------------------------------------------------
+Gene: Arhgap24 (jtk)
+CircadiPy: 25.25000000000082 Other: 24.0
+The period error for 14 is: 1.2500000000008207
+CircadiPy: 27.437437437437552 Other: 29.0
+The phase error for 14 is: -1.562562562562448
+------------------------------------------------------------------
+Gene: Hmcn1 (jtk)
+CircadiPy: 26.72000000000105 Other: 28.0
+The period error for 15 is: -1.2799999999989495
+CircadiPy: 26.353713713713805 Other: 26.0
+The phase error for 15 is: 0.35371371371380533
+------------------------------------------------------------------
+Gene: Creld2 (jtk)
+CircadiPy: 23.33000000000052 Other: 24.0
+The period error for 16 is: -0.6699999999994795
+CircadiPy: 30.025165165165298 Other: 29.5
+The phase error for 16 is: 0.5251651651652978
+------------------------------------------------------------------
+Gene: St5 (jtk)
+CircadiPy: 22.580000000000403 Other: 24.0
+The period error for 17 is: -1.4199999999995967
+CircadiPy: 30.46434434434446 Other: 29.5
+The phase error for 17 is: 0.964344344344461
+------------------------------------------------------------------
+Gene: Cdkn1a (jtk)
+CircadiPy: 24.000000000000625 Other: 24.0
+The period error for 18 is: 6.252776074688882e-13
+CircadiPy: 28.324324324324436 Other: 28.0
+The phase error for 18 is: 0.3243243243244365
+------------------------------------------------------------------
+Gene: Fam108c (jtk)
+CircadiPy: 24.510000000000705 Other: 24.0
+The period error for 19 is: 0.510000000000705
+CircadiPy: 28.12180180180192 Other: 29.0
+The phase error for 19 is: -0.8781981981980813
+------------------------------------------------------------------
+Gene: Iffo2 (jtk)
+CircadiPy: 23.600000000000563 Other: 24.0
+The period error for 20 is: -0.39999999999943725
+CircadiPy: 27.874274274274367 Other: 28.0
+The phase error for 20 is: -0.12572572572563345
+------------------------------------------------------------------
+Gene: nan (jtk)
+CircadiPy: 27.970000000001246 Other: 28.0
+The period error for 21 is: -0.029999999998754134
+CircadiPy: 26.71009009009128 Other: 27.0
+The phase error for 21 is: -0.2899099099087188
+------------------------------------------------------------------
+Gene: Fam101b (jtk)
+CircadiPy: 23.96000000000062 Other: 24.0
+The period error for 22 is: -0.039999999999380975
+CircadiPy: 28.508988988989106 Other: 29.0
+The phase error for 22 is: -0.49101101101089384
+------------------------------------------------------------------
+Gene: Ubc (jtk)
+CircadiPy: 23.420000000000535 Other: 24.0
+The period error for 23 is: -0.5799999999994654
+CircadiPy: 27.46962962962971 Other: 27.0
+The phase error for 23 is: 0.46962962962971133
+------------------------------------------------------------------
+Gene: Arfgef2 (jtk)
+CircadiPy: 25.530000000000864 Other: 26.0
+The period error for 24 is: -0.46999999999913555
+CircadiPy: 25.175555555555597 Other: 26.0
+The phase error for 24 is: -0.8244444444444028
+------------------------------------------------------------------
+Gene: Steap4 (jtk)
+CircadiPy: 24.10000000000064 Other: 24.0
+The period error for 25 is: 0.10000000000064091
+CircadiPy: 28.24584584584596 Other: 29.5
+The phase error for 25 is: -1.2541541541540404
+------------------------------------------------------------------
+Gene: Fam73b (jtk)
+CircadiPy: 22.410000000000377 Other: 22.0
+The period error for 26 is: 0.41000000000037673
+CircadiPy: 28.127567567567638 Other: 29.0
+The phase error for 26 is: -0.8724324324323618
+------------------------------------------------------------------
+Gene: Slc25a36 (jtk)
+CircadiPy: 25.930000000000927 Other: 26.0
+The period error for 27 is: -0.06999999999907303
+CircadiPy: 26.07647647647655 Other: 26.0
+The phase error for 27 is: 0.0764764764765502
+------------------------------------------------------------------
+Gene: Ppfibp2 (jtk)
+CircadiPy: 24.370000000000683 Other: 24.0
+The period error for 28 is: 0.3700000000006831
+CircadiPy: 28.634934934935064 Other: 29.0
+The phase error for 28 is: -0.3650650650649361
+------------------------------------------------------------------
+Gene: Amotl1 (jtk)
+CircadiPy: 22.130000000000333 Other: 22.0
+The period error for 29 is: 0.13000000000033296
+CircadiPy: 29.227907907907987 Other: 29.5
+The phase error for 29 is: -0.2720920920920129
+------------------------------------------------------------------
+Gene: Vegfa (jtk)
+CircadiPy: 23.880000000000607 Other: 24.0
+The period error for 30 is: -0.11999999999939348
+CircadiPy: 26.868468468468542 Other: 27.0
+The phase error for 30 is: -0.1315315315314578
+------------------------------------------------------------------
+Gene: Pip5k1b (jtk)
+CircadiPy: 24.810000000000752 Other: 26.0
+The period error for 31 is: -1.189999999999248
+CircadiPy: 28.271591591591722 Other: 27.0
+The phase error for 31 is: 1.2715915915917222
+------------------------------------------------------------------
+Gene: Naa40 (jtk)
+CircadiPy: 25.790000000000905 Other: 26.0
+The period error for 32 is: -0.2099999999990949
+CircadiPy: 26.11689689689697 Other: 27.0
+The phase error for 32 is: -0.8831031031030285
+------------------------------------------------------------------
+Gene: B4galt6 (jtk)
+CircadiPy: 24.820000000000753 Other: 26.0
+The period error for 33 is: -1.1799999999992465
+CircadiPy: 28.42238238238252 Other: 27.0
+The phase error for 33 is: 1.4223823823825192
+------------------------------------------------------------------
+Gene: Tnik (jtk)
+CircadiPy: 23.930000000000614 Other: 24.0
+The period error for 34 is: -0.06999999999938566
+CircadiPy: 26.443303303303367 Other: 27.0
+The phase error for 34 is: -0.5566966966966334
+------------------------------------------------------------------
+Gene: Epha4 (jtk)
+CircadiPy: 24.250000000000664 Other: 26.0
+The period error for 35 is: -1.7499999999993356
+CircadiPy: 29.825825825825987 Other: 29.0
+The phase error for 35 is: 0.8258258258259872
+------------------------------------------------------------------
+Gene: Tuba8 (jtk)
+CircadiPy: 23.51000000000055 Other: 24.0
+The period error for 36 is: -0.4899999999994513
+CircadiPy: 27.20056056056064 Other: 27.0
+The phase error for 36 is: 0.2005605605606391
+------------------------------------------------------------------
+Gene: Pabpc4 (jtk)
+CircadiPy: 27.000000000001094 Other: 26.0
+The period error for 37 is: 1.0000000000010942
+CircadiPy: 25.18918918918924 Other: 27.0
+The phase error for 37 is: -1.8108108108107608
+------------------------------------------------------------------
+Gene: BY080835 (jtk)
+CircadiPy: 24.09000000000064 Other: 24.0
+The period error for 38 is: 0.09000000000063935
+CircadiPy: 26.314954954955017 Other: 27.0
+The phase error for 38 is: -0.6850450450449834
+------------------------------------------------------------------
+Gene: Elk3 (jtk)
+CircadiPy: 24.820000000000753 Other: 26.0
+The period error for 39 is: -1.1799999999992465
+CircadiPy: 28.323003003003137 Other: 28.0
+The phase error for 39 is: 0.3230030030031372
+------------------------------------------------------------------
+Gene: Ppfibp1 (jtk)
+CircadiPy: 27.720000000001207 Other: 28.0
+The period error for 40 is: -0.2799999999987932
+CircadiPy: 25.942342342342428 Other: 26.0
+The phase error for 40 is: -0.057657657657571804
+------------------------------------------------------------------
+Gene: nan (jtk)
 CircadiPy: 27.99000000000125 Other: 28.0
-The period error for 43 is: -0.009999999998751008
-CircadiPy: 18.655855855856956 Other: 19.0
-The phase error for 43 is: -0.3441441441430442
+The period error for 41 is: -0.009999999998751008
+CircadiPy: 24.224144144144155 Other: 26.0
+The phase error for 41 is: -1.7758558558558448
 ------------------------------------------------------------------
-Gene: F830001A07Rik (jtk)
-CircadiPy: 22.5700000000004 Other: 24.0
-The period error for 44 is: -1.4299999999995983
-CircadiPy: 13.791111111111466 Other: 14.0
-The phase error for 44 is: -0.2088888888885343
+Gene: Lpin1 (jtk)
+CircadiPy: 24.750000000000743 Other: 24.0
+The period error for 42 is: 0.7500000000007425
+CircadiPy: 26.82432432432441 Other: 28.0
+The phase error for 42 is: -1.1756756756755884
 ------------------------------------------------------------------
-Gene: Itgb6 (jtk)
-CircadiPy: 24.400000000000688 Other: 25.0
-The period error for 45 is: -0.5999999999993122
-CircadiPy: -0.440440440440959 Other: 0.5
-The phase error for 45 is: -0.940440440440959
+Gene: Lasp1 (jtk)
+CircadiPy: 24.02000000000063 Other: 24.0
+The period error for 43 is: 0.020000000000628404
+CircadiPy: 26.98146146146154 Other: 28.0
+The phase error for 43 is: -1.0185385385384613
 ------------------------------------------------------------------
-Gene: Cd93 (jtk)
-CircadiPy: 23.980000000000622 Other: 24.0
-The period error for 46 is: -0.01999999999937785
-CircadiPy: 0.19303303303319197 Other: 0.0
-The phase error for 46 is: 0.19303303303319197
+Gene: Srgap1 (jtk)
+CircadiPy: 23.040000000000475 Other: 24.0
+The period error for 44 is: -0.9599999999995248
+CircadiPy: 29.71963963963976 Other: 29.0
+The phase error for 44 is: 0.7196396396397589
 ------------------------------------------------------------------
-Gene: Col15a1 (jtk)
-CircadiPy: 21.810000000000283 Other: 22.0
-The period error for 47 is: -0.18999999999971706
-CircadiPy: 3.8679879879881174 Other: 5.0
-The phase error for 47 is: -1.1320120120118826
+Gene: Atxn2 (jtk)
+CircadiPy: 23.850000000000602 Other: 24.0
+The period error for 45 is: -0.14999999999939817
+CircadiPy: 26.912612612612683 Other: 28.0
+The phase error for 45 is: -1.0873873873873166
 ------------------------------------------------------------------
-Gene: Aqp1 (jtk)
-CircadiPy: 25.57000000000087 Other: 26.0
-The period error for 48 is: -0.4299999999991293
-CircadiPy: 16.37055055055131 Other: 17.0
-The phase error for 48 is: -0.6294494494486891
+Gene: Inpp5j (jtk)
+CircadiPy: 23.280000000000513 Other: 22.0
+The period error for 46 is: 1.2800000000005127
+CircadiPy: 26.563363363363422 Other: 28.5
+The phase error for 46 is: -1.9366366366365781
 ------------------------------------------------------------------
-Gene: Cntfr (jtk)
-CircadiPy: 25.56000000000087 Other: 28.0
-The period error for 49 is: -2.439999999999131
-CircadiPy: 15.850090090090834 Other: 16.0
-The phase error for 49 is: -0.14990990990916586
+Gene: Abtb2 (jtk)
+CircadiPy: 24.67000000000073 Other: 24.0
+The period error for 47 is: 0.67000000000073
+CircadiPy: 25.33351351351355 Other: 27.0
+The phase error for 47 is: -1.6664864864864484
+------------------------------------------------------------------
+Gene: Pabpc4 (jtk)
+CircadiPy: 26.53000000000102 Other: 26.0
+The period error for 48 is: 0.5300000000010208
+CircadiPy: 25.540280280280335 Other: 27.0
+The phase error for 48 is: -1.459719719719665
+------------------------------------------------------------------
+Gene: Tm4sf1 (jtk)
+CircadiPy: 24.250000000000664 Other: 25.0
+The period error for 49 is: -0.7499999999993356
+CircadiPy: 29.243243243243388 Other: 29.0
+The phase error for 49 is: 0.24324324324338775
+------------------------------------------------------------------
+Gene: Ptpn4 (jtk)
+CircadiPy: 27.510000000001174 Other: 28.0
+The period error for 50 is: -0.48999999999882604
+CircadiPy: 26.753753753753873 Other: 26.5
+The phase error for 50 is: 0.2537537537538732
+------------------------------------------------------------------
+Gene: Rel (jtk)
+CircadiPy: 22.63000000000041 Other: 22.0
+The period error for 51 is: 0.6300000000004111
+CircadiPy: 27.443203203203268 Other: 29.0
+The phase error for 51 is: -1.556796796796732
+------------------------------------------------------------------
+Gene: Adora2a (jtk)
+CircadiPy: 24.840000000000757 Other: 25.0
+The period error for 52 is: -0.15999999999924341
+CircadiPy: 26.635675675675756 Other: 27.0
+The phase error for 52 is: -0.3643243243242438
+------------------------------------------------------------------
+Gene: Ube2ql1 (jtk)
+CircadiPy: 23.940000000000616 Other: 24.0
+The period error for 53 is: -0.0599999999993841
+CircadiPy: 28.025945945946052 Other: 29.0
+The phase error for 53 is: -0.9740540540539477
+------------------------------------------------------------------
+Gene: Egln3 (jtk)
+CircadiPy: 24.720000000000738 Other: 26.0
+The period error for 54 is: -1.2799999999992622
+CircadiPy: 26.32600600600608 Other: 26.0
+The phase error for 54 is: 0.32600600600607876
+------------------------------------------------------------------
+Gene: Wdr67 (jtk)
+CircadiPy: 27.130000000001115 Other: 26.0
+The period error for 55 is: 1.1300000000011146
+CircadiPy: 26.172572572572662 Other: 28.0
+The phase error for 55 is: -1.827427427427338
+------------------------------------------------------------------
+Gene: Pea15a (jtk)
+CircadiPy: 25.070000000000793 Other: 24.0
+The period error for 56 is: 1.0700000000007925
+CircadiPy: 27.412932932933042 Other: 29.0
+The phase error for 56 is: -1.5870670670669575
+------------------------------------------------------------------
+Gene: Hmcn1 (jtk)
+CircadiPy: 25.040000000000788 Other: 26.0
+The period error for 57 is: -0.9599999999992122
+CircadiPy: 29.51431431431449 Other: 29.0
+The phase error for 57 is: 0.5143143143144897
+------------------------------------------------------------------
+Gene: Pfkfb2 (jtk)
+CircadiPy: 25.130000000000802 Other: 24.6667
+The period error for 58 is: 0.4633000000008032
+CircadiPy: 26.263963963964038 Other: 27.0
+The phase error for 58 is: -0.7360360360359621
+------------------------------------------------------------------
+Gene: Fam84b (jtk)
+CircadiPy: 25.490000000000858 Other: 26.0
+The period error for 59 is: -0.5099999999991418
+CircadiPy: 27.623203203203328 Other: 28.0
+The phase error for 59 is: -0.3767967967966719
+------------------------------------------------------------------
+Gene: Osbpl3 (jtk)
+CircadiPy: 25.37000000000084 Other: 26.0
+The period error for 60 is: -0.6299999999991606
+CircadiPy: 27.149029029029133 Other: 27.0
+The phase error for 60 is: 0.1490290290291334
+------------------------------------------------------------------
+Gene: Srf (jtk)
+CircadiPy: 23.72000000000058 Other: 22.0
+The period error for 61 is: 1.7200000000005815
+CircadiPy: 26.80176176176183 Other: 29.0
+The phase error for 61 is: -2.1982382382381687
+------------------------------------------------------------------
+Gene: Anapc16 (jtk)
+CircadiPy: 23.850000000000602 Other: 24.0
+The period error for 62 is: -0.14999999999939817
+CircadiPy: 25.527927927927962 Other: 26.0
+The phase error for 62 is: -0.47207207207203794
+------------------------------------------------------------------
+Gene: Qrsl1 (jtk)
+CircadiPy: 26.190000000000968 Other: 24.0
+The period error for 63 is: 2.1900000000009676
+CircadiPy: 25.57297297297303 Other: 28.0
+The phase error for 63 is: -2.42702702702697
+------------------------------------------------------------------
+Gene: Pygo1 (jtk)
+CircadiPy: 23.370000000000527 Other: 24.0
+The period error for 64 is: -0.6299999999994732
+CircadiPy: 26.058618618618663 Other: 26.0
+The phase error for 64 is: 0.05861861861866302
+------------------------------------------------------------------
+Gene: Rasl11a (jtk)
+CircadiPy: 23.660000000000572 Other: 24.0
+The period error for 65 is: -0.33999999999942787
+CircadiPy: 27.17361361361369 Other: 27.0
+The phase error for 65 is: 0.1736136136136892
+------------------------------------------------------------------
+Gene: Taf1a (jtk)
+CircadiPy: 27.99000000000125 Other: 28.0
+The period error for 66 is: -0.009999999998751008
+CircadiPy: 25.625045045045113 Other: 26.5
+The phase error for 66 is: -0.8749549549548874
+------------------------------------------------------------------
+Gene: Nppb (jtk)
+CircadiPy: 24.4700000000007 Other: 24.0
+The period error for 67 is: 0.47000000000069875
+CircadiPy: 27.87013013013024 Other: 29.0
+The phase error for 67 is: -1.1298698698697613
+------------------------------------------------------------------
+Gene: Alg12 (jtk)
+CircadiPy: 25.990000000000936 Other: 28.0
+The period error for 68 is: -2.0099999999990636
+CircadiPy: 27.225985985986103 Other: 27.0
+The phase error for 68 is: 0.2259859859861031
+------------------------------------------------------------------
+Gene: Lrrc14b (jtk)
+CircadiPy: 26.860000000001072 Other: 28.0
+The period error for 69 is: -1.1399999999989276
+CircadiPy: 25.004804804805804 Other: 26.0
+The phase error for 69 is: -0.9951951951941957
+------------------------------------------------------------------
+Gene: Fam49a (jtk)
+CircadiPy: 25.270000000000824 Other: 28.0
+The period error for 70 is: -2.729999999999176
+CircadiPy: 28.249609609609745 Other: 26.0
+The phase error for 70 is: 2.2496096096097453
+------------------------------------------------------------------
+Gene: Fut2 (jtk)
+CircadiPy: 24.210000000000658 Other: 24.0
+The period error for 71 is: 0.2100000000006581
+CircadiPy: 28.41063063063075 Other: 29.0
+The phase error for 71 is: -0.5893693693692512
+------------------------------------------------------------------
+Gene: Myd88 (jtk)
+CircadiPy: 26.700000000001047 Other: 26.0
+The period error for 72 is: 0.7000000000010473
+CircadiPy: 28.490090090090266 Other: 29.0
+The phase error for 72 is: -0.5099099099097337
+------------------------------------------------------------------
+Gene: Large (jtk)
+CircadiPy: 27.99000000000125 Other: 28.0
+The period error for 73 is: -0.009999999998751008
+CircadiPy: 26.280900900902072 Other: 27.0
+The phase error for 73 is: -0.719099099097928
+------------------------------------------------------------------
+Gene: Cmtm6 (jtk)
+CircadiPy: 23.420000000000535 Other: 24.0
+The period error for 74 is: -0.5799999999994654
+CircadiPy: 28.31359359359369 Other: 29.0
+The phase error for 74 is: -0.6864064064063093
+------------------------------------------------------------------
+Gene: Vwa3a (jtk)
+CircadiPy: 24.330000000000677 Other: 24.0
+The period error for 75 is: 0.33000000000067686
+CircadiPy: 28.481201201201326 Other: 29.0
+The phase error for 75 is: -0.5187987987986737
+------------------------------------------------------------------
+Gene: Phospho2 (jtk)
+CircadiPy: 27.210000000001127 Other: 28.0
+The period error for 76 is: -0.7899999999988729
+CircadiPy: 25.929849849850925 Other: 26.0
+The phase error for 76 is: -0.07015015014907533
+------------------------------------------------------------------
+Gene: Plin5 (jtk)
+CircadiPy: 22.460000000000385 Other: 22.0
+The period error for 77 is: 0.46000000000038455
+CircadiPy: 28.586426426426506 Other: 29.0
+The phase error for 77 is: -0.413573573573494
+------------------------------------------------------------------
+Gene: Srrt (jtk)
+CircadiPy: 24.880000000000763 Other: 24.0
+The period error for 78 is: 0.8800000000007628
+CircadiPy: 27.486686686686795 Other: 28.0
+The phase error for 78 is: -0.5133133133132048
+------------------------------------------------------------------
+Gene: Nfil3 (jtk)
+CircadiPy: 23.500000000000547 Other: 24.0
+The period error for 79 is: -0.4999999999994529
+CircadiPy: 27.387387387387466 Other: 27.0
+The phase error for 79 is: 0.3873873873874665
+------------------------------------------------------------------
+Gene: Srsf3 (jtk)
+CircadiPy: 25.740000000000897 Other: 28.0
+The period error for 80 is: -2.2599999999991027
+CircadiPy: 26.576576576576667 Other: 26.0
+The phase error for 80 is: 0.5765765765766666
+------------------------------------------------------------------
+Gene: Hmcn1 (jtk)
+CircadiPy: 23.59000000000056 Other: 24.0
+The period error for 81 is: -0.4099999999994388
+CircadiPy: 29.62004004004017 Other: 29.5
+The phase error for 81 is: 0.12004004004016977
+------------------------------------------------------------------
+Gene: Prdm1 (jtk)
+CircadiPy: 26.02000000000094 Other: 27.0
+The period error for 82 is: -0.979999999999059
+CircadiPy: 29.209209209209398 Other: 29.5
+The phase error for 82 is: -0.2907907907906022
+------------------------------------------------------------------
+Gene: Nup62 (jtk)
+CircadiPy: 23.2000000000005 Other: 22.0
+The period error for 83 is: 1.2000000000005002
+CircadiPy: 27.158358358358427 Other: 29.0
+The phase error for 83 is: -1.8416416416415728
+------------------------------------------------------------------
+Gene: Syne1 (jtk)
+CircadiPy: 25.00000000000078 Other: 26.0
+The period error for 84 is: -0.9999999999992184
+CircadiPy: 26.652652652652733 Other: 26.0
+The phase error for 84 is: 0.6526526526527334
+------------------------------------------------------------------
+Gene: Dolpp1 (jtk)
+CircadiPy: 23.660000000000572 Other: 24.0
+The period error for 85 is: -0.33999999999942787
+CircadiPy: 27.78938938938948 Other: 28.5
+The phase error for 85 is: -0.7106106106105194
+------------------------------------------------------------------
+Gene: Hmcn1 (jtk)
+CircadiPy: 25.420000000000847 Other: 26.0
+The period error for 86 is: -0.5799999999991527
+CircadiPy: 26.849889889889983 Other: 26.0
+The phase error for 86 is: 0.8498898898899832
+------------------------------------------------------------------
+Gene: Lmo4 (jtk)
+CircadiPy: 26.390000000001 Other: 28.0
+The period error for 87 is: -1.6099999999990011
+CircadiPy: 25.835255255256232 Other: 27.0
+The phase error for 87 is: -1.1647447447437678
+------------------------------------------------------------------
+Gene: Mllt4 (jtk)
+CircadiPy: 27.720000000001207 Other: 26.0
+The period error for 88 is: 1.7200000000012068
+CircadiPy: 25.664864864864935 Other: 28.0
+The phase error for 88 is: -2.335135135135065
+------------------------------------------------------------------
+Gene: Grip2 (jtk)
+CircadiPy: 24.530000000000708 Other: 26.0
+The period error for 89 is: -1.4699999999992919
+CircadiPy: 26.7992192192193 Other: 27.0
+The phase error for 89 is: -0.2007807807807005
+------------------------------------------------------------------
+Gene: E2f5 (jtk)
+CircadiPy: 27.99000000000125 Other: 28.0
+The period error for 90 is: -0.009999999998751008
+CircadiPy: 26.801801801801926 Other: 27.0
+The phase error for 90 is: -0.1981981981980745
+------------------------------------------------------------------
+Gene: Daam1 (jtk)
+CircadiPy: 23.530000000000552 Other: 24.0
+The period error for 91 is: -0.4699999999994482
+CircadiPy: 26.543783783783844 Other: 27.0
+The phase error for 91 is: -0.4562162162161556
+------------------------------------------------------------------
+Gene: Fbxo8 (jtk)
+CircadiPy: 24.530000000000708 Other: 25.0
+The period error for 92 is: -0.4699999999992919
+CircadiPy: 25.66970970970976 Other: 26.5
+The phase error for 92 is: -0.8302902902902396
+------------------------------------------------------------------
+Gene: Slc39a10 (jtk)
+CircadiPy: 26.610000000001033 Other: 28.0
+The period error for 93 is: -1.3899999999989667
+CircadiPy: 26.263723723724745 Other: 26.0
+The phase error for 93 is: 0.26372372372474473
+------------------------------------------------------------------
+Gene: Lrrc49 (jtk)
+CircadiPy: 24.98000000000078 Other: 24.0
+The period error for 94 is: 0.9800000000007785
+CircadiPy: 26.85057057057066 Other: 28.0
+The phase error for 94 is: -1.1494294294293397
+------------------------------------------------------------------
+Gene: Rabgef1 (jtk)
+CircadiPy: 26.820000000001066 Other: 28.0
+The period error for 95 is: -1.179999999998934
+CircadiPy: 26.25621621621726 Other: 26.0
+The phase error for 95 is: 0.2562162162172612
+------------------------------------------------------------------
+Gene: Arfgef2 (jtk)
+CircadiPy: 23.160000000000494 Other: 24.0
+The period error for 96 is: -0.839999999999506
+CircadiPy: 27.755675675675754 Other: 28.0
+The phase error for 96 is: -0.24432432432424633
+------------------------------------------------------------------
+Gene: Dync1li1 (jtk)
+CircadiPy: 27.99000000000125 Other: 26.0
+The period error for 97 is: 1.990000000001249
+CircadiPy: 27.306126126126273 Other: 29.0
+The phase error for 97 is: -1.6938738738737271
+------------------------------------------------------------------
+Gene: Itfg3 (jtk)
+CircadiPy: 23.32000000000052 Other: 22.0
+The period error for 98 is: 1.320000000000519
+CircadiPy: 27.361441441441517 Other: 29.0
+The phase error for 98 is: -1.6385585585584828
+------------------------------------------------------------------
+Gene: Grsf1 (jtk)
+CircadiPy: 27.99000000000125 Other: 28.0
+The period error for 99 is: -0.009999999998751008
+CircadiPy: 26.673153153154345 Other: 27.0
+The phase error for 99 is: -0.3268468468456547
 ==================================================================
-The mean error for the period parametrization is: -0.3732 +/- 0.4976
-The mean error for the phase parametrization is: -0.3729 +/- 0.42
+The mean error for the period parametrization is: -0.1534 +/- 0.8974
+The mean error for the phase parametrization is: -0.422 +/- 0.855

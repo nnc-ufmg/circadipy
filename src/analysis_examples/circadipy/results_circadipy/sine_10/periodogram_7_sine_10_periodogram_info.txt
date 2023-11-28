@@ -1,7 +1,7 @@
 Protocol name: 7_sine_10
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_7_sine_10.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_7_sine_10.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [9, 8]
 Test labels: ['1', '2']
 Consider first day: True
@@ -19,7 +19,7 @@ data_periodogram parameters:
 time_shape: continuous
 method: periodogram
 max_period: 48
-unit_of_measurement: AMPLITUDE
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sine_10
+unit_of_measurement: AMPLITUDE_{S}
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sine_10
 save_suffix: periodogram
 format: .svg

@@ -1,0 +1,25 @@
+Protocol name: 0_sine_0
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_0_sine.asc
+ZT 0 time: 0
+Cycle types: ['LL', 'LL']
+Cycle days: [4, 3]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-07T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+fit_cosinor_per_day parameters:
+day_window: 1
+step: 0.01
+start_time: 22
+end_time: 26
+n_components: [1]
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sine_0
+save_suffix: 

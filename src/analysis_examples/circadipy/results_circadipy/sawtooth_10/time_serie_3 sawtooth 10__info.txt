@@ -1,7 +1,7 @@
 Protocol name: 3_sawtooth_10
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_3_sawtooth_10.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_3_sawtooth_10.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [8, 6]
 Test labels: ['1', '2']
 Consider first day: True
@@ -18,8 +18,9 @@ Filtered: False
 time_serie parameters:
 title: TIME SERIES
 x_label: TIME (DAYS)
-y_label: AMPLITUDE
+y_label: SIMULATED
+AMPLITUDE
 color: midnightblue
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_10
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_10
 save_suffix: 
 format: .svg

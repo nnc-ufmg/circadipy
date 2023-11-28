@@ -1,7 +1,7 @@
 Protocol name: 1_sawtooth_0
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_1_sawtooth.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_1_sawtooth.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [3, 6]
 Test labels: ['1', '2']
 Consider first day: True
@@ -19,7 +19,7 @@ data_periodogram parameters:
 time_shape: continuous
 method: welch
 max_period: 48
-unit_of_measurement: AMPLITUDE
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_0
+unit_of_measurement: AMPLITUDE_{S}
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_0
 save_suffix: welch
 format: .svg

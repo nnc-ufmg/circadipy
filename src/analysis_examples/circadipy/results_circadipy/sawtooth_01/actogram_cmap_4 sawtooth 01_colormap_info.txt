@@ -1,7 +1,7 @@
 Protocol name: 4_sawtooth_01
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_4_sawtooth_01.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_4_sawtooth_01.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [9, 10]
 Test labels: ['1', '2']
 Consider first day: True
@@ -17,9 +17,9 @@ Filtered: False
 ------------------------------------------------------------
 actogram_colormap parameters:
 first_hour: 18
-unit_of_measurement: Amplitude
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_01
+unit_of_measurement: SIMULATED_AMPLITUDE
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_01
 save_suffix: colormap
-adjust_figure: [2, 0.95, 0.8, 0.2, 0.05]
+adjust_figure: [2, 0.9, 0.8, 0.2, 0.1]
 norm_color: None
 format: .svg

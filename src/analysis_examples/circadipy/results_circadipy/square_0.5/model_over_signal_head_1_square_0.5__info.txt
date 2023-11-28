@@ -1,7 +1,7 @@
 Protocol name: 1_square_0.5
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_1_square_0.5.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_1_square_0.5.asc
 ZT 0 time: 0
-Cycle types: ['DD', 'DD']
+Cycle types: ['LL', 'LL']
 Cycle days: [4, 9]
 Test labels: ['1', '2']
 Consider first day: True
@@ -18,6 +18,6 @@ Filtered: False
 model_over_signal parameters:
 position: head
 mv_avg_window: 1
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/circadipy/results_circadipy/\square_0.5
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\square_0.5
 save_suffix: 
 format: .svg

@@ -1,0 +1,23 @@
+Protocol name: 8_sawtooth_0
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/data_circadipy\simulated_data_8_sawtooth.asc
+ZT 0 time: 0
+Cycle types: ['LL', 'LL']
+Cycle days: [10, 4]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-14T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+model_per_day parameters:
+day_window: 1
+only_significant: False
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadipy/results_circadipy/\sawtooth_0
+save_suffix: 
+format: .svg

@@ -1,0 +1,25 @@
+Protocol name: 10371959_Elk3
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadb/data_lomb/10371959_Elk3.asc
+ZT 0 time: 0
+Cycle types: ['LD']
+Cycle days: [3]
+Test labels: ['Gene']
+Consider first day: True
+Set NaNs: []
+Start date: 2020-01-01T18:00:00.000000
+End date: 2020-01-03T16:00:00.000000
+Sampling interval: 2H
+Sampling frequency: 0.0001388888888888889
+------------------------------------------------------------
+Normalized: True (type: minmax, per_day: False)
+Resampled: False
+Filtered: True (type: moving_average, window: 3, order: 2)
+------------------------------------------------------------
+fit_cosinor parameters:
+time_shape: continuous
+step: 0.01
+start_time: 20
+end_time: 28
+n_components: [1]
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/circadb/results_lomb/
+save_suffix: 
