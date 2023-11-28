@@ -377,7 +377,7 @@ def actogram_bar(protocol, first_hour = 0, save_folder = None, save_suffix = '',
         for count_ax, ax in enumerate(axes):
             for step, time in zip(is_night_to_plot, time_to_plot):
                 if step == True:
-                    ax.axvspan(time, time + step_length, facecolor='darkgray', alpha=0.8, edgecolor='none')
+                    ax.axvspan(time, time + step_length, facecolor='lightgray', alpha=0.9, edgecolor='none')
                 else:
                     ax.axvspan(time, time + step_length, facecolor='white', alpha=1, edgecolor='none')
 
@@ -783,11 +783,11 @@ def data_periodogram(protocol, time_shape = 'continuous', method = 'periodogram'
                                 ' HOURS)', fontsize=x_label_fontsize)   
         else:
             axes[count].set_title(test_label.replace('_', ' ').upper() + '\n(NO SIGNIFICANT PEAK)', fontsize=8)
-        ax[count].title.set_size(title_fontsize)
-        ax[count].xaxis.label.set_size(x_label_fontsize)
-        ax[count].yaxis.label.set_size(y_label_fontsize)
-        ax[count].tick_params(axis='x', labelsize = x_ticks_fontsize)
-        ax[count].tick_params(axis='y', labelsize = y_ticks_fontsize)
+        axes[count].title.set_size(title_fontsize)
+        axes[count].xaxis.label.set_size(x_label_fontsize)
+        axes[count].yaxis.label.set_size(y_label_fontsize)
+        axes[count].tick_params(axis='x', labelsize = x_ticks_fontsize)
+        axes[count].tick_params(axis='y', labelsize = y_ticks_fontsize)
 
     fig.supylabel('PSD $(' + unit_of_measurement + '^{2}/HZ)$', fontsize = y_label_fontsize + 2)                                                         # If ativity, can be "COUNTS", if temperature, can be "C°"
     fig.supxlabel(x_label, fontsize = x_label_fontsize + 2)

@@ -1,9 +1,9 @@
 Protocol name: animal_02
-File: E:/github/nnc-ufmg/circadipy/src/analysis_examples/er4000/data/1_control_dl\control_dl_temp_animal_04.asc
+File: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/er4000/data/1_control_dl\control_dl_temp_animal_05.asc
 ZT 0 time: 20
-Cycle types: ['DL', 'DD', 'DD', 'DD', 'DL']
-Cycle days: [8, 31, 23, 22, 14]
-Test labels: ['1_control_dl', '2_control_dd', '3_induction_dd', '4_hypo_dd', '5_hypo_dl']
+Cycle types: ['LD', 'DD', 'DD', 'LD']
+Cycle days: [8, 54, 22, 14]
+Test labels: ['1_control_dl', '2_induction_dd', '3_hypo_dd', '4_hypo_dl']
 Consider first day: False
 Set NaNs: []
 Start date: 2022-06-08 00:00:00
@@ -17,9 +17,9 @@ Filtered: True (type: moving_average, window: 3, order: 2)
 ------------------------------------------------------------
 actogram_colormap parameters:
 first_hour: 18
-unit_of_measurement: Amplitude
-save_folder: E:/github/nnc-ufmg/circadipy/src/analysis_examples/er4000\results_er4000\animal_02
+unit_of_measurement: TEMPERATURE (°C)
+save_folder: C:/Users/morei/Documents/GitHub/circadipy/src/analysis_examples/er4000\results_er4000\animal_02
 save_suffix: tmp
-adjust_figure: [1.2, 0.85, 0.85, 0.2, 0.15]
+adjust_figure: [2, 0.85, 0.85, 0.2, 0.15]
 norm_color: [33, 40]
 format: .svg
