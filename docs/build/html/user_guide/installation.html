@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation &mdash; circadipy 0.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -51,7 +53,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="package_manager.html">Package and Environment Management System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="env_creation.html">Environment Creation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-microsoft-visual-c-build-tools">Installing Microsoft Visual C++ Build Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#after-this-step-is-completed-you-can-follow-these-steps">After this step is completed, you can follow these steps:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pipelines.html">Introduction tutorial</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
@@ -89,8 +95,26 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
-<p>The installation process for the package is pretty straightforward. You can install it using pip.</p>
-<p>You can follow these steps:</p>
+<p>The installation process for the package is pretty straightforward with one catch. You need to first install Microsoft Visual C++ Build Tools.
+This is to ensure that, in the installation process, the PyMice package is installed correctly. PyMice is a dependency of CircadiPy.</p>
+<section id="installing-microsoft-visual-c-build-tools">
+<h2>Installing Microsoft Visual C++ Build Tools<a class="headerlink" href="#installing-microsoft-visual-c-build-tools" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Go to the <a class="reference external" href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft Visual C++ Build Tools</a> website.</p></li>
+<li><p>There, download the installer for the Build Tools for Visual Studio as show in this picture:</p>
+<a class="reference internal image-reference" href="../_images/Microsoft_build_tools_site.png"><img alt="../_images/Microsoft_build_tools_site.png" class="align-center" src="../_images/Microsoft_build_tools_site.png" style="width: 376.5px; height: 236.5px;" /></a>
+</li>
+<li><p>On the installer you need to select C++ Build tools on the left      (Desenvolvimento para desktop com C++ em portugues)</p></li>
+<li><p>On the right, select only “MSVC v143 build tools” and “Windows 11 SDK”</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../_images/Microsoft_build_tools_selection.png"><img alt="../_images/Microsoft_build_tools_selection.png" class="align-center" src="../_images/Microsoft_build_tools_selection.png" style="width: 640.0px; height: 362.0px;" /></a>
+</div></blockquote>
+</li>
+<li><p>After the installation you can continue with circadipy`s installation process normally using the requirements.txt</p></li>
+</ol>
+</section>
+<section id="after-this-step-is-completed-you-can-follow-these-steps">
+<h2>After this step is completed, you can follow these steps:<a class="headerlink" href="#after-this-step-is-completed-you-can-follow-these-steps" title="Permalink to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Make sure that the environment you created in the previous section is activated (the terminal should look like this):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(circadipy_env)</span> <span class="gp">$</span>
@@ -109,10 +133,13 @@
 </div>
 </li>
 <li><p>Wait for the installation to finish.</p></li>
-</ol>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(circadipy_env)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>circadipy
+<li><p>After the installation you can install the requirements using the requirements.txt provided.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(circadipy_env)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
+</li>
+</ol>
+</section>
 </section>
 
 
