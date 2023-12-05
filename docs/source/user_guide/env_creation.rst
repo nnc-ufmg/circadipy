@@ -21,7 +21,7 @@ To create the environment, you can follow these steps:
 
     .. code-block:: console
 
-       (base) $ mamba env create -f circadipy_env.yml
+       (base) $ mamba env create -f circadipy_env.yaml
 
 #. Wait for the environment to be created:
 
