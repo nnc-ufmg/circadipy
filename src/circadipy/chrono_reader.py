@@ -33,7 +33,7 @@ class read_protocol():
     :return: A protocol object
     :rtype: protocol object
     """
-    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([])):
+    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([]), separator = ","):
         """
         Constructor method
         """
@@ -60,6 +60,7 @@ class read_protocol():
         self.cycle_types = labels_dict['cycle_types'].copy()                                                            # Convert the cycle type to a number
         self.cycle_days = labels_dict['cycle_days'].copy()                                                              # Convert the cycle days to a number
         self.test_labels = labels_dict['test_labels'].copy()                                                            # Convert the test label to a number
+        self.separator = separator
 
         if not isinstance(self.cycle_days, list):
             raise ValueError('The cycle days must be a list of integers or a empty list')
@@ -238,7 +239,7 @@ class read_protocol():
         self.sampling_frequency = self._get_sampling_frequency(self.sampling_interval)                                  # Set the sampling frequency for the object as a float (e.g. 1.0 for 1 Hz)
 
         data_string = self._lines[11:]
-        tuplas = [string.split(',') for string in data_string]
+        tuplas = [string.split(self.separator) for string in data_string]
         self.raw_data = pandas.DataFrame.from_records(tuplas)
 
         self.raw_data = self.raw_data.rename(columns={0: 'real_time', 1: 'duration', 2: 'value', 3: 'day'})
