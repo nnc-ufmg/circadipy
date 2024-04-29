@@ -41,5 +41,6 @@ in the base environment as shown in this image:
    In this case, we will download the windows installer, `Mambaforge-Windows-x86_64`.
 
 After the download is completed you can run the installer and follow the instructions. After the installation
-is completed there will be a new program in your start menu called `Mambaforge`. You can open it and use the
+is completed there will be a new program in your start menu called `Miniforge Prompt` (Alternatively, you can type 
+'miniforge' into your operating system's search bar to find the prompt). You can open it and use the
 mambaforge terminal to create a new environment with the required dependencies.

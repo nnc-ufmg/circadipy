@@ -6,34 +6,28 @@
 Welcome to circadipy's documentation!
 =======================================
 
-Introducing **CircadiPy**, the a Python package for chronobiology analysis! 
+Introducing **CircadiPy**, a Python package for chronobiological analysis! 
 With seamless integration of powerful time series plotting libraries, 
-it empowers researchers to visualize and study circadian cycles with unrivaled versatility.
+it enables researchers to visualise and study circadian cycles with unrivalled versatility.
 
-Currently, the package supports the visualization of biological rhythms and their synchronization with external cues using:
+Currently, the package supports the visualisation of biological rhythms and their synchronisation with external cues using
 
-1. Actograms: An actogram is a graphical representation of an organism's activity or physiological data over time. It typically shows activity or physiological measurements (e.g., hormone levels, temperature) along the y-axis and time along the x-axis. Actograms are often used to visualize circadian rhythms and patterns of activity rest cycles.
+1. Actograms: An actogram is a graphical representation of an organism's activity or physiological data over time. It typically shows activity or physiological measurements (e.g. hormone levels, temperature) on the y-axis and time on the x-axis. Actograms are often used to visualise circadian rhythms and patterns of activity/rest cycles.
 
-2. Cosinor Analysis Plot: This plot is used to analyze and display the presence of rhythmic patterns in data. It's a graphical representation of the cosinor analysis, which fits a cosine curve to the data to estimate the rhythm's parameters like amplitude, acrophase (peak time), and period.
+2. Cosinor Analysis Plot: This plot is used to analyse and display the presence of rhythmic patterns in the data. It's a graphical representation of cosinor analysis, which fits a cosine curve to the data to estimate rhythm parameters such as amplitude, acrophase (peak time) and period.
 
-3. Raster Plot: A raster plot displays individual events or occurrences (such as action potentials in neurons) over time. In chronobiology, this can be used to show the timing of specific events in relation to the circadian cycle.
+3. Raster plot: A raster plot shows individual events or occurrences (such as action potentials in neurons) over time. In chronobiology this can be used to show the timing of specific events in relation to the circadian cycle.
+
+4. Histogram: A histogram can be used to show the distribution of events or measurements over a period of time. In chronobiology this could be the distribution of activity bouts or physiological measurements over different time bins.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-CircadiPy also provides a built-in generator of simulated data, making possible the creation of custom datasets for testing, experimentation and comparison purposes.
+CircadiPy also has a built-in simulated data generator that allows the creation of custom data sets for testing, experimentation and comparison purposes.
 
 .. note::
 
    You can view the whole source code for the project on
-   `Circadipy's Github page <https://github.com/nncufmg/circadipy>`_
-
-
-.. toctree::
-   :caption: FIRST STEPS
-   :maxdepth: 2
-   :hidden:
-   
-   user_guide/first_steps
+   `Circadipy's Github page <https://github.com/nnc-ufmg/circadipy>`_
 
 
 .. toctree::
@@ -41,9 +35,10 @@ CircadiPy also provides a built-in generator of simulated data, making possible 
    :maxdepth: 2
    :hidden:
 
+   user_guide/before_install
    user_guide/package_manager
    user_guide/env_creation
-   user_guide/installation
+   user_guide/working_with_ipynb
    user_guide/pipelines
 
 .. toctree::
