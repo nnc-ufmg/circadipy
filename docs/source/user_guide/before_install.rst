@@ -14,9 +14,9 @@ After downloading the Visual Studio Build Tools, you can install it by running t
 #. Select the "desktop development with C++" workload.
 
     .. figure:: /imgs/build_tools.png
-        :scale: 50 %
-        :align: center
-        :alt: Select the "desktop development with C++" workload
+       :scale: 50 %
+       :align: center
+       :alt: Select the "desktop development with C++" workload
 
 #. Select only the "MSVC" (e.g. "MSVC v142 - VS 2019 C++ x64/x86 build tools") and "Windows X SDK" components on the right side of the window.
 
