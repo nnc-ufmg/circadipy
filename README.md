@@ -17,8 +17,8 @@ Currently, the package supports the visualisation of biological rhythms and thei
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-# Some steps for the installation of CircadiPy:
-    * This guide is in a simplified format, for a more detailed guide please visit our documentation page: https://circadipy.readthedocs.io/en/latest/
+# CircadiPy installation:
+    * This guide is in a simplified format, for a more detailed guide and much more please visit our documentation page: https://circadipy.readthedocs.io/en/latest/
 
 
 ## Before Installation
@@ -39,8 +39,23 @@ After downloading the Visual Studio Build Tools, you can install it by running t
 
 3. Click on the "Install" button to start the installation.
 
-After the installation is completed, you may proceed to the next step.
+------------------------------------------------------------------------------------------------------------------------------
 
+# Package and Environment Management System
+
+We recommend using either Miniconda or Mamba to install Python and create a new environment. In this tutorial, we will use Mamba, but the steps are the same for Miniconda.
+
+To install Python using Mamba, you need the Mambaforge installer. You can download it from the [Mambaforge GitHub page](https://github.com/conda-forge/miniforge#mambaforge).
+
+There, scroll to the Mambaforge section and download the installer for your operating system. This will install the Mambaforge package and environment management system with Mamba installed in the base environment, as shown in this image:
+
+<p align="center">
+    <img src="https://raw.githubusercontent.com/nnc-ufmg/circadipy/main/docs/source/imgs/mambaforge_github_page.png" alt="Mambaforge GitHub Page" />
+</p>
+
+*Figure: The section where the user will download the Mambaforge installer. You can observe that there are options for different operating systems, including Linux, macOS, and Windows. The user should download the installer for their operating system. In this case, download the Windows installer, `Mambaforge-Windows-x86_64`.*
+
+After the download is completed, run the installer and follow the instructions. Once the installation is completed, a new program called "Miniforge Prompt" will appear in your start menu. (Alternatively, you can type "miniforge" into your operating system's search bar to find the prompt.) Open it and use the Mambaforge terminal to create a new environment with the required dependencies.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
@@ -69,34 +84,6 @@ After the installation is completed, you may proceed to the next step.
     ```console
     (circadipy_env) $ pip install circadipy
     ```
-
-------------------------------------------------------------------------------------------------------------------------------
-
-# Package and Environment Management System
-
-We recommend using either Miniconda or Mamba to install Python and create a new environment. In this tutorial, we will use Mamba, but the steps are the same for Miniconda.
-
-> **Note**: From the Mamba documentation: Mamba is a drop-in replacement and uses the same commands and configuration options as Conda. You can swap almost all commands between Conda and Mamba:
-
-> ```console
-> (base) $ mamba install ...
-> (base) $ mamba create -n ... -c ... ...
-> (base) $ mamba list
-> ```
-
-> The only exception is the `conda activate` command, which is replaced by `mamba activate`.
-
-To install Python using Mamba, you need the Mambaforge installer. You can download it from the [Mambaforge GitHub page](https://github.com/conda-forge/miniforge#mambaforge).
-
-Then, scroll to the Mambaforge section and download the installer for your operating system. This will install the Mambaforge package and environment management system with Mamba installed in the base environment, as shown in this image:
-
-<p align="center">
-    <img src="https://raw.githubusercontent.com/nnc-ufmg/circadipy/main/docs/source/imgs/mambaforge_github_page.png" alt="Mambaforge GitHub Page" />
-</p>
-
-*Figure: The section where the user will download the Mambaforge installer. You can observe that there are options for different operating systems, including Linux, macOS, and Windows. The user should download the installer for their operating system. In this case, download the Windows installer, `Mambaforge-Windows-x86_64`.*
-
-After the download is completed, run the installer and follow the instructions. Once the installation is completed, a new program called "Miniforge Prompt" will appear in your start menu. (Alternatively, you can type "miniforge" into your operating system's search bar to find the prompt.) Open it and use the Mambaforge terminal to create a new environment with the required dependencies.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
