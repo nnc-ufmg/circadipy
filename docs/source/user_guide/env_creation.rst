@@ -1,43 +1,29 @@
-Environment Creation
-====================
+Environment Creation and Installation
+=====================================
 
-We provide an environment file called `circadipy_env.yml` that contains all the dependencies required to run
-circadipy. To create a new environment using this file, you will need to use the newly installed mambaforge terminal.
-To create the environment, you can follow these steps:
-
-#. Open the mambaforge terminal.
-
-#. Navigate to the folder where you downloaded the `circadipy_env.yml` file:
-
-    * You can use the `cd` command to navigate to the folder.
-
-    * E.g.: 
+#. Create a new environment following the steps:
     
-        .. code-block:: console 
+    * Open the mambaforge terminal ('Miniforge Prompt') and type:
 
-           (base) $ cd "C:\Users\user\Downloads"
+        .. code-block:: console
 
-#. Run the following command:
+            (base) $ mamba create -n circadipy_env python=3.8
 
-    .. code-block:: console
+        .. note::
 
-       (base) $ mamba env create -f circadipy_env.yaml
+           Python version must be 3.8, because PyMICE, one of the dependencies of circadipy to read Intellicage
+           data, is not compatible with versions of Python higher than 3.8.
 
-#. Wait for the environment to be created:
+    * Press 'y' when prompted.
 
-    * This can take a few minutes.
+    * After the environment is created, type:
 
-    * In the case of conda, the environment creation can take a significant amount of time because of the environment solving process. This process is usually faster with mamba.
+        .. code-block:: console
 
-#. Activate the environment using the following command:
+            (base) $ mamba activate circadipy_env
 
-    .. code-block:: console
+#. Install the dependences from PyPI repository by typing: 
 
-       (base) $ mamba activate circadipy_env
+    .. code-block:: console 
 
-#. Then the terminal should look something like this:
-
-    .. code-block:: console
-
-       (circadipy_env) $
-
+        (circadipy_env) $ pip install circadipy

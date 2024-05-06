@@ -1,7 +1,7 @@
 API description
 ===============
 
-The current package includes a series of functions that facilitate cronobiology analysis. 
+The current package includes a series of functions to perform cronobiology analysis. 
 
 The package itself has 4 files:
 

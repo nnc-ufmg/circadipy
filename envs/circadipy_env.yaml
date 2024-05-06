@@ -4,7 +4,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8.16
+  - python=3.8.19
   - pip
   - jupyter
   - vs2015_runtime=14.27.29016
@@ -19,3 +19,21 @@ dependencies:
     - statsmodels
     - threadpoolctl
     - wincertstore
+    - collection==0.1.6
+    - CosinorPy==3.0 
+    - matplotlib==3.6.2 
+    - matplotlib-inline==0.1.6  
+    - numpy==1.22.0 
+    - openpyxl==3.0.10 
+    - pandas==1.5.2  
+    - pillow==9.4.0  
+    - pymice==1.1.0
+    - seaborn==0.13.0  
+    - scikit-learn==1.2.0  
+    - scikit-optimize==0.9.0  
+    - scipy==1.10.0
+    - PyQt5==5.15.10
+    - notebook==7.1.3
+    - nbsphinx==0.9.3
+    - sphinx-rtd-theme==2.0.0
+    - ipykernel==6.29.4

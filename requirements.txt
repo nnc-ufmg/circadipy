@@ -10,4 +10,9 @@
     seaborn==0.13.0  
     scikit-learn==1.2.0  
     scikit-optimize==0.9.0  
-    scipy==1.10.0 
+    scipy==1.10.0
+    PyQt5==5.15.10
+    notebook==7.1.3
+    nbsphinx==0.9.3
+    sphinx-rtd-theme==2.0.0
+    ipykernel==6.29.4
