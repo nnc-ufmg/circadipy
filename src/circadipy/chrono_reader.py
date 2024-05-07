@@ -165,7 +165,7 @@ class read_protocol():
                 hours, minutes, seconds = time_parts
 
                 # Add leading zeros to month and day if necessary
-                yer = year.zfill(2)
+                year = year.zfill(2)
                 month = month.zfill(2)
                 day = day.zfill(2)
                 hours = hours.zfill(2)
