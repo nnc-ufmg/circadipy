@@ -1,1 +1,1 @@
-include circadipy\tutorial_pipeline.ipynb
+include src/circadipy/tutorial_pipeline.ipynb
