@@ -33,7 +33,7 @@ class read_protocol():
     :return: A protocol object
     :rtype: protocol object
     """
-    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([])):
+    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([]), separator = ","):
         """
         Constructor method
         """
@@ -60,6 +60,7 @@ class read_protocol():
         self.cycle_types = labels_dict['cycle_types'].copy()                                                            # Convert the cycle type to a number
         self.cycle_days = labels_dict['cycle_days'].copy()                                                              # Convert the cycle days to a number
         self.test_labels = labels_dict['test_labels'].copy()                                                            # Convert the test label to a number
+        self.separator = separator
 
         if not isinstance(self.cycle_days, list):
             raise ValueError('The cycle days must be a list of integers or a empty list')
@@ -135,16 +136,69 @@ class read_protocol():
         self.sampling_frequency = self._get_sampling_frequency(self.sampling_interval)                                  # Set the sampling frequency for the object as a float (e.g. 1.0 for 1 Hz)
 
         data_string = self._lines[15:]
-        data_string = [sample.replace('\t', ',') for sample in data_string]
-        raw_data = [sample.replace(',', ' ', 1).split(",", 1) for sample in data_string]
+        data_string = [sample.replace('\t', self.separator) for sample in data_string]
+        
+        if self.separator == ",":
+            raw_data = [sample.replace(',', ' ', 1).split(",", 1) for sample in data_string]
+            print(raw_data[0])
+        else:
+            raw_data = [sample.split(self.separator) for sample in data_string]
+            raw_data_2 = []
+            for sample in raw_data:
+                sample_new = [sample[0] + " " + sample[1], sample[2]]
+                raw_data_2.append(sample_new)
+            raw_data = raw_data_2
 
         real_time = []
         data = []
         for sample in raw_data:
+            print(sample)
             try:
-                real_time.append(datetime.strptime(sample[0], "%m/%d/%y %H:%M:%S"))
+                # Split the date and time parts
+                date_parts = sample[0].split(" ")
+
+                # Split the date further into day, month, and year
+                day, month, year = date_parts[0].split("/")
+
+                # Split the time into hours, minutes, and seconds
+                time_parts = date_parts[1].split(":")
+                hours, minutes, seconds = time_parts
+
+                # Add leading zeros to month and day if necessary
+                yer = year.zfill(2)
+                month = month.zfill(2)
+                day = day.zfill(2)
+                hours = hours.zfill(2)
+                minutes = minutes.zfill(2)
+                seconds = seconds.zfill(2)
+
+                # Reconstruct the date string with the corrected format
+                formatted_date_str = f"{year}/{month}/{day} {hours}:{minutes.zfill(2)}:{seconds}"
+
+                real_time.append(datetime.strptime(formatted_date_str, "%d/%m/%y %H:%M:%S"))
             except:
-                real_time.append(datetime.strptime(sample[0], "%m/%d/%Y %H:%M:%S"))
+                # Split the date and time parts
+                date_parts = sample[0].split(" ")
+
+                # Split the date further into day, month, and year
+                day, month, year = date_parts[0].split("/")
+
+                # Split the time into hours, minutes, and seconds
+                time_parts = date_parts[1].split(":")
+                hours, minutes, seconds = time_parts
+
+                # Add leading zeros to month and day if necessary
+                yer = year.zfill(2)
+                month = month.zfill(2)
+                day = day.zfill(2)
+                hours = hours.zfill(2)
+                minutes = minutes.zfill(2)
+                seconds = seconds.zfill(2)
+
+                # Reconstruct the date string with the corrected format
+                formatted_date_str = f"{year}/{month}/{day} {hours}:{minutes.zfill(2)}:{seconds}"
+                
+                real_time.append(datetime.strptime(formatted_date_str, "%d/%m/%Y %H:%M:%S"))
         
             value = sample[1].replace(',', '.', 1)                                                                      # Replace the comma with a dot in the activity value
             value = value.split(',')[0]
@@ -238,7 +292,8 @@ class read_protocol():
         self.sampling_frequency = self._get_sampling_frequency(self.sampling_interval)                                  # Set the sampling frequency for the object as a float (e.g. 1.0 for 1 Hz)
 
         data_string = self._lines[11:]
-        tuplas = [string.split(',') for string in data_string]
+        tuplas = [string.split(self.separator) for string in data_string]
+        print(tupla)
         self.raw_data = pandas.DataFrame.from_records(tuplas)
 
         self.raw_data = self.raw_data.rename(columns={0: 'real_time', 1: 'duration', 2: 'value', 3: 'day'})
