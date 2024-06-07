@@ -3,12 +3,12 @@ import pandas
 import pymice
 import matplotlib.pyplot as plt
 import os
+import re
 from datetime import datetime, timedelta
 from math import ceil
 from scipy.signal import savgol_filter
 from scipy.ndimage import uniform_filter1d
 from sklearn.preprocessing import MinMaxScaler
-from io import StringIO
 plt.ion()
 
 class read_protocol():
@@ -33,7 +33,7 @@ class read_protocol():
     :return: A protocol object
     :rtype: protocol object
     """
-    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([]), separator = ","):
+    def __init__(self, name, file, zt_0_time, labels_dict, type, consider_first_day = False, set_nans = numpy.array([]), separator = ",", date_type = "%m/%d/%y %H:%M:%S"):
         """
         Constructor method
         """
@@ -60,7 +60,8 @@ class read_protocol():
         self.cycle_types = labels_dict['cycle_types'].copy()                                                            # Convert the cycle type to a number
         self.cycle_days = labels_dict['cycle_days'].copy()                                                              # Convert the cycle days to a number
         self.test_labels = labels_dict['test_labels'].copy()                                                            # Convert the test label to a number
-        self.separator = separator
+        self.separator = separator                                                                                      # Define the separator of the data file (only for ER4000)
+        self.date_type = date_type                                                                                      # Define the date type of the data file (only for ER4000)
 
         if not isinstance(self.cycle_days, list):
             raise ValueError('The cycle days must be a list of integers or a empty list')
@@ -120,10 +121,9 @@ class read_protocol():
         self._lines = [line.strip() for line in self._lines]                                                            # Remove the line breaks
         file.close()                                                                                                    # Close the temperature file
 
-        date_type = "%m/%d/%y %H:%M:%S"
-        start_date = datetime.strptime(self._lines[3].split("Start Date/Time ", 1)[1].strip(), date_type)               # Get the start date from the temperature file
+        start_date = datetime.strptime(self._lines[3].split("Start Date/Time ", 1)[1].strip(), "%m/%d/%y %H:%M:%S")     # Get the start date from the temperature file
         self.start_date = numpy.datetime64(start_date)                                                                  # Convert the start date to numpy datetime64
-        end_date = datetime.strptime(self._lines[4].split("End Date/Time ", 1)[1].strip(), date_type)                   # Get the end date from the temperature file
+        end_date = datetime.strptime(self._lines[4].split("End Date/Time ", 1)[1].strip(), "%m/%d/%y %H:%M:%S")         # Get the end date from the temperature file
         self.end_date = numpy.datetime64(end_date)                                                                      # Convert the end date to numpy datetime64
         sampling_freq = self._lines[9].split("Sampling Interval:", 1)[1].strip()                                        # Get the sampling frequency from the temperature file
         
@@ -140,11 +140,11 @@ class read_protocol():
         
         if self.separator == ",":
             raw_data = [sample.replace(',', ' ', 1).split(",", 1) for sample in data_string]
-            print(raw_data[0])
         else:
             raw_data = [sample.split(self.separator) for sample in data_string]
             raw_data_2 = []
             for sample in raw_data:
+                print(sample)
                 sample_new = [sample[0] + " " + sample[1], sample[2]]
                 raw_data_2.append(sample_new)
             raw_data = raw_data_2
@@ -152,53 +152,26 @@ class read_protocol():
         real_time = []
         data = []
         for sample in raw_data:
-            print(sample)
-            try:
-                # Split the date and time parts
-                date_parts = sample[0].split(" ")
-
-                # Split the date further into day, month, and year
-                day, month, year = date_parts[0].split("/")
-
-                # Split the time into hours, minutes, and seconds
-                time_parts = date_parts[1].split(":")
-                hours, minutes, seconds = time_parts
-
-                # Add leading zeros to month and day if necessary
-                year = year.zfill(2)
-                month = month.zfill(2)
-                day = day.zfill(2)
-                hours = hours.zfill(2)
-                minutes = minutes.zfill(2)
-                seconds = seconds.zfill(2)
-
-                # Reconstruct the date string with the corrected format
-                formatted_date_str = f"{year}/{month}/{day} {hours}:{minutes.zfill(2)}:{seconds}"
-
-                real_time.append(datetime.strptime(formatted_date_str, "%d/%m/%y %H:%M:%S"))
-            except:
-                # Split the date and time parts
-                date_parts = sample[0].split(" ")
-
-                # Split the date further into day, month, and year
-                day, month, year = date_parts[0].split("/")
-
-                # Split the time into hours, minutes, and seconds
-                time_parts = date_parts[1].split(":")
-                hours, minutes, seconds = time_parts
-
-                # Add leading zeros to month and day if necessary
-                yer = year.zfill(2)
-                month = month.zfill(2)
-                day = day.zfill(2)
-                hours = hours.zfill(2)
-                minutes = minutes.zfill(2)
-                seconds = seconds.zfill(2)
-
-                # Reconstruct the date string with the corrected format
-                formatted_date_str = f"{year}/{month}/{day} {hours}:{minutes.zfill(2)}:{seconds}"
+            # Define regular expression pattern to match both formats (with '/' and '-')
+            pattern = r'(\d{1,2})[/|-](\d{1,2})[/|-](\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})'
+            
+            # Use regular expression to extract date components
+            match = re.match(pattern, sample[0])
+            if match:
+                d1 = match.group(1).zfill(2)
+                d2 = match.group(2).zfill(2)
+                d3 = match.group(3).zfill(2)
+                d4 = match.group(4).zfill(2)
+                d5 = match.group(5).zfill(2)
+                d6 = match.group(6).zfill(2)
                 
-                real_time.append(datetime.strptime(formatted_date_str, "%d/%m/%Y %H:%M:%S"))
+                # Reformat the date components
+                formatted_date = f"{d1}/{d2}/{d3} {d4}:{d5}:{d6}"
+                
+                # Parse the formatted string into a datetime object
+                real_time.append(datetime.strptime(formatted_date, self.date_type))
+            else:
+                raise ValueError("CircadiPy could not read the file, tried to read " + sample[0] + " and failed")
         
             value = sample[1].replace(',', '.', 1)                                                                      # Replace the comma with a dot in the activity value
             value = value.split(',')[0]
@@ -208,9 +181,7 @@ class read_protocol():
                 if value == 'NaN.':
                     data.append(numpy.nan)
                 else:
-                    print("AO PAU AI GEEEENTE")
-
-            #data.append(float(sample[1].replace(',', '.', 1)))
+                    raise ValueError('CircadiPy could not read the file')
 
         real_time = [numpy.datetime64(date) for date in real_time]
 
@@ -293,7 +264,6 @@ class read_protocol():
 
         data_string = self._lines[11:]
         tuplas = [string.split(self.separator) for string in data_string]
-        print(tupla)
         self.raw_data = pandas.DataFrame.from_records(tuplas)
 
         self.raw_data = self.raw_data.rename(columns={0: 'real_time', 1: 'duration', 2: 'value', 3: 'day'})
@@ -752,14 +722,15 @@ class read_protocol():
                 samples_per_day = (24*60*60)/(1/self.sampling_frequency)
                 samples_day_dif = first_day_dif.total_seconds()/(1/self.sampling_frequency)
 
-                if samples_day_dif <= samples_per_day/2:
-                    index_to_change = self.data[self.data['test_labels'] == labels[count + 1]][-int(samples_day_dif):].index
-                    self.data.loc[index_to_change,'test_labels'] = label
-                    self.data.loc[index_to_change,'cycle_types'] = cycle
-                else:
-                    index_to_change = self.data[self.data['test_labels'] == label][0:int(samples_per_day - samples_day_dif)]['test_labels'].index
-                    self.data.loc[index_to_change,'test_labels'] = labels[count + 1]
-                    self.data.loc[index_to_change,'cycle_types'] = cycles[count + 1]
+                if samples_day_dif != 0:
+                    if samples_day_dif <= samples_per_day/2:
+                        index_to_change = self.data[self.data['test_labels'] == labels[count + 1]][-int(samples_day_dif):].index
+                        self.data.loc[index_to_change,'test_labels'] = label
+                        self.data.loc[index_to_change,'cycle_types'] = cycle
+                    else:
+                        index_to_change = self.data[self.data['test_labels'] == label][0:int(samples_per_day - samples_day_dif)]['test_labels'].index
+                        self.data.loc[index_to_change,'test_labels'] = labels[count + 1]
+                        self.data.loc[index_to_change,'cycle_types'] = cycles[count + 1]
         
         count_days = list(self.data.groupby((self.data['test_labels'] != self.data['test_labels'].shift()).cumsum())['test_labels'].count())
         count_days = numpy.array(count_days)/self.sampling_frequency/60/60/24
