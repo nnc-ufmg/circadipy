@@ -1,8 +1,9 @@
 import numpy
 import pandas
 import matplotlib.pyplot as plt
-from scipy.signal import savgol_filter
+from scipy.signal import savgol_filter, find_peaks
 import warnings
+import copy
 from CosinorPy import cosinor
 plt.ion()
 
@@ -20,6 +21,73 @@ def positive_rad(rad):
     else:
         return rad
 
+def colect_data_per_day(protocol, days_to_save = 'all', save_folder = None, save_suffix = ''):
+    """
+    Colect data per day
+
+    :param protocol: The protocol to colect the data per day
+    :type protocol: protocol
+    :param days_to_save: The days to save the data, defaults to 'all'
+    :type days_to_save: list
+    :param save_folder: The folder to save the data, defaults to None
+    :type save_folder: str
+    :param save_suffix: The suffix to add to the save file, defaults to ''
+    :type save_suffix: str
+    """
+    protocol_df = protocol.data.copy()
+    protocol_name = protocol.name.replace('_', ' ').capitalize()
+
+    if days_to_save == 'all':
+        days_to_save = protocol_df['day'].unique()
+    else:
+        if not isinstance(days_to_save, list):
+            raise ValueError("days_to_save must be a list")
+        else:
+            # check all elements are int
+            if isinstance(days_to_save[0], int):
+                days_to_save = [int(day - 1) for day in days_to_save]
+                days_in_experiment = protocol_df['day'].unique()
+                days_to_save = [days_in_experiment[day] for day in days_to_save]
+            elif isinstance(days_to_save[0], str):
+                days_to_save = [str(day) for day in days_to_save]
+            else:
+                raise ValueError("The elements of days_to_save must be int or str")
+        
+            for day in days_to_save:
+                if day not in protocol_df['day'].unique():
+                    raise ValueError("The day " + str(day) + " is not in the data")
+                
+    sampling_frequency = protocol.sampling_frequency
+    seconds_per_day = 24*60*60
+    data_len = int(seconds_per_day/(1/sampling_frequency))
+
+    columns = (numpy.arange(0, data_len)/sampling_frequency)/3600
+    columns = [str(round(column, 2)) for column in columns]
+    data_frame = pandas.DataFrame(columns = columns)
+
+    for day in days_to_save:
+        day_data = protocol_df[protocol_df['day'] == day]
+        index = day_data['real_date'][0]
+
+        if len(day_data) == data_len:
+            data_frame.loc[index] = day_data['values'].values
+        else:
+            print("The data for the day " + str(day) + " is not complete")
+
+    if save_folder != None:
+        save_file = save_folder + '/data_per_day_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.xlsx'
+        data_frame.to_excel(save_file)
+        
+        text = protocol.info_text
+        text += "colect_data_per_day parameters:\n"
+        text += "days_to_save: " + str(days_to_save) + "\n"
+        text += "save_folder: " + str(save_folder) + "\n"
+        text += "save_suffix: " + str(save_suffix) + "\n"
+        save_text_file = save_folder + '/data_per_day_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '_info.txt'
+        with open(save_text_file, 'w') as f:
+            f.write(text)
+    else:
+        return data_frame
 
 def _acrophase_ci_in_zt(best_models):
     """
@@ -86,6 +154,23 @@ def total_activity_per_day(protocol, save_folder = None, save_suffix = ''):
             f.write(text)    
     else:
         save_file = None
+
+def data_series_each_day(protocol):
+    each_day_data = {}
+
+    for test_label in protocol.test_labels:
+        data = protocol.data.loc[protocol.data['test_labels'] == test_label]
+        each_day_data[test_label] = []
+        seconds_per_day = 24*60*60
+        data_len = seconds_per_day/(1/protocol.sampling_frequency)
+        for day in data['day'].unique():
+            data_day = data.loc[data['day'] == day]['values']
+            if len(data_day) == int(data_len):
+                each_day_data[test_label].append(data_day.values)
+        
+        each_day_data[test_label] = numpy.array(each_day_data[test_label])
+
+    return each_day_data
 
 def fit_cosinor(protocol, dict = None, save_folder = None, save_suffix = ''):
     """
@@ -435,6 +520,176 @@ def derivate_acrophase(best_models_per_day):
     plt.plot(first_derivate)
     plt.plot(acrophases_zt)
     plt.plot(acrophases_zt_smooth)
+
+def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_multiplier = 1, minimal_peak_distance = 10, 
+               plot_adjustment_lines = False, save_folder = None, save_suffix = ''):
+    """
+    Get the CBT cycles
+
+    :param protocol: The protocol to get the CBT cycles
+    :type protocol: protocol
+    :param save_folder: The folder to save the data, defaults to None
+    :type save_folder: str
+    :param save_suffix: The suffix to add to the save file, defaults to ''
+    :type save_suffix: str
+    """
+    protocol_df = copy.deepcopy(protocol)
+    
+    sampling_frequency = protocol_df.sampling_frequency
+    print(1/sampling_frequency)
+
+    protocol_df.resample(resample_to, method = 'sum')
+    protocol_df.apply_filter('moving_average', window = monving_average_window)
+    data = protocol_df.data
+    
+    sampling_frequency = protocol_df.sampling_frequency
+    print(1/sampling_frequency)
+
+    protocol_name = protocol_df.name.replace('_', ' ').capitalize()
+
+    test_labels = data['test_labels'].unique()
+    
+    peak_values = {test_label: [] for test_label in test_labels}
+    peak_indexes = {test_label: [] for test_label in test_labels}
+    peak_hours = {test_label: [] for test_label in test_labels}
+    nadir_values = {test_label: [] for test_label in test_labels}
+    nadir_indexes = {test_label: [] for test_label in test_labels}
+    nadir_hours = {test_label: [] for test_label in test_labels}
+
+    period_between_nadirs = {test_label: [] for test_label in test_labels}
+
+    columns = 1
+    rows = len(test_labels)//columns + len(test_labels)%columns 
+
+    fig, axs = plt.subplots(rows, columns, figsize = (20, 20))
+    fig_2, axs_2 = plt.subplots(rows, columns, figsize = (20, 20))
+
+    output = pandas.DataFrame()
+
+    to_hour = 3600/(1/sampling_frequency)
+
+    for count, test_label in enumerate(test_labels):
+        data_label = data.loc[data['test_labels'] == test_label]
+        
+        data_values = data_label['values'].values
+        data_hours = numpy.arange(0, len(data_values))/to_hour
+
+        mean_data = numpy.mean(data_values)
+        std_data = numpy.std(data_values)
+
+        distance = (minimal_peak_distance*3600)*sampling_frequency
+
+        peaks, _ = find_peaks(data_values, height = std_multiplier*std_data, distance = distance)
+        nadirs, _ = find_peaks(- data_values, height = - std_multiplier*std_data, distance = distance)
+
+        peak_values[test_label] = data_values[peaks]
+        peak_indexes[test_label] = peaks
+        peak_hours[test_label] = data_hours[peaks]
+
+        nadir_values[test_label] = data_values[nadirs]
+        nadir_indexes[test_label] = nadirs
+        nadir_hours[test_label] = data_hours[nadirs]
+
+        if plot_adjustment_lines:
+            axs[count].axhline(mean_data, color = 'black', linestyle = '--', linewidth = 0.5)
+            axs[count].axhline(mean_data + std_data, color = 'black', linestyle = '--', linewidth = 0.5)
+            axs[count].axhline(mean_data - std_data, color = 'black', linestyle = '--', linewidth = 0.5)
+            
+        axs[count].plot(data_hours, data_values, color = 'dimgray', linewidth = 0.5)
+        axs[count].scatter(peak_indexes[test_label]/to_hour, peak_values[test_label], facecolor = 'black', edgecolor = 'black', s = 5, alpha = 0.5, zorder = 100)
+        axs[count].scatter(nadir_indexes[test_label]/to_hour, nadir_values[test_label], facecolor = 'black', edgecolor = 'black', s = 5, alpha = 0.5, zorder = 100)
+
+        axs_c = axs[count].twinx()
+
+        for count_nadir, (start, end) in enumerate(zip(nadir_indexes[test_label][0:-1], nadir_indexes[test_label][1:])):
+            period_between_nadirs = (end - start)/to_hour
+            
+            axs_c.axvline(start/to_hour, color = 'black', linestyle = '--', linewidth = 0.5)
+            axs_c.axvline(end/to_hour, color = 'black', linestyle = '--', linewidth = 0.5)
+
+            cumulative_data = numpy.cumsum(data_values[start:end + 1])
+            axs_2[count].plot(numpy.arange(0, end-start)/to_hour, data_values[start:end], color = 'dimgray', linewidth = 0.5)
+
+            max_activity = cumulative_data[-1]
+
+            t25 = numpy.where(cumulative_data >= max_activity*0.25)[0][0]
+            t50 = numpy.where(cumulative_data >= max_activity*0.50)[0][0]
+            t75 = numpy.where(cumulative_data >= max_activity*0.75)[0][0]
+
+            axs_c.plot(numpy.arange(start, end + 1)/to_hour, cumulative_data, color = 'maroon', linewidth = 1)
+            axs_c.scatter((start + t25)/to_hour, cumulative_data[t25], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.axvline((start + t25)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
+            axs[count].scatter((start + t25)/to_hour, data_values[start + t25], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+            
+            axs_c.scatter((start + t50)/to_hour, cumulative_data[t50], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.axvline((start + t50)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
+            axs[count].scatter((start + t50)/to_hour, data_values[start + t50], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+            
+            axs_c.scatter((start + t75)/to_hour, cumulative_data[t75], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.axvline((start + t75)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
+            axs[count].scatter((start + t75)/to_hour, data_values[start + t75], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+
+            t25 = t25/to_hour
+            t50 = t50/to_hour
+            t75 = t75/to_hour
+
+            pandas_dict = {'test_label': test_label, 'interval_inter_nadir': count_nadir, 'interval_start_hr': start/to_hour, 'interval_end_hr': end/to_hour, 'period': period_between_nadirs, 't25': t25, 't50': t50, 't75': t75}
+            output = pandas.concat([output, pandas.DataFrame(pandas_dict, index = [0])], axis = 0)
+        
+        median_t25 = numpy.median(output.loc[output['test_label'] == test_label]['t25'])
+        first_quartile_t25 = numpy.percentile(output.loc[output['test_label'] == test_label]['t25'], 25)
+        third_quartile_t25 = numpy.percentile(output.loc[output['test_label'] == test_label]['t25'], 75)
+
+        median_t50 = numpy.median(output.loc[output['test_label'] == test_label]['t50'])
+        first_quartile_t50 = numpy.percentile(output.loc[output['test_label'] == test_label]['t50'], 25)
+        third_quartile_t50 = numpy.percentile(output.loc[output['test_label'] == test_label]['t50'], 75)
+        median_t75 = numpy.median(output.loc[output['test_label'] == test_label]['t75'])
+        first_quartile_t75 = numpy.percentile(output.loc[output['test_label'] == test_label]['t75'], 25)
+        third_quartile_t75 = numpy.percentile(output.loc[output['test_label'] == test_label]['t75'], 75)
+        median_period = numpy.median(output.loc[output['test_label'] == test_label]['period'])
+        first_quartile_period = numpy.percentile(output.loc[output['test_label'] == test_label]['period'], 25)
+        third_quartile_period = numpy.percentile(output.loc[output['test_label'] == test_label]['period'], 75)
+
+        axs_2[count].axvline(median_t25, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvspan(first_quartile_t25, third_quartile_t25, color = 'maroon', alpha = 0.1)
+        axs_2[count].axvline(median_t50, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvspan(first_quartile_t50, third_quartile_t50, color = 'maroon', alpha = 0.1)
+        axs_2[count].axvline(median_t75, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvspan(first_quartile_t75, third_quartile_t75, color = 'maroon', alpha = 0.1)
+        axs_2[count].axvline(median_period, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvspan(first_quartile_period, third_quartile_period, color = 'midnightblue', alpha = 0.1)
+
+        axs[count].set_title(test_label)
+        axs[count].set_ylabel('Measurement')
+        axs_c.set_ylabel('Cumulative measurement')
+        axs[-1].set_xlabel('Time (h)')
+
+        axs_2[count].set_title(test_label)
+        axs_2[count].set_ylabel('Measurement')
+        axs_2[-1].set_xlabel('Time (h)')
+
+        fig.tight_layout()
+        fig_2.tight_layout()
+
+    if save_folder != None:
+        fig.savefig(save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
+        fig_2.savefig(save_folder + '/cbt_cycles_intervals_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
+        plt.close(fig)
+        plt.close(fig_2)
+
+        save_file = save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.xlsx'
+        output.to_excel(save_file, index = False)
+        
+        text = protocol.info_text
+        text += "cbt_cycles parameters:\n"
+        text += "save_folder: " + str(save_folder) + "\n"
+        text += "save_suffix: " + str(save_suffix) + "\n"
+        save_text_file = save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '_info.txt'
+        with open(save_text_file, 'w') as f:
+            f.write(text)
+    else:
+        plt.show()
+
 
 # file_activity = "F:\\github\\chronobiology_analysis\\protocols\\data_expto_5\\data\\1_control_dl\\control_dl_ale_animal_01.asc"
 # file_temperature = "F:\\github\\chronobiology_analysis\\protocols\\data_expto_5\\data\\1_control_dl\\control_dl_temp_animal_01.asc"

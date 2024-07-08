@@ -557,6 +557,12 @@ class read_protocol():
             self.test_labels.extend(protocol.test_labels)
 
         if self.start_date < protocol.start_date:
+            if self.end_date <= protocol.start_date:
+                range_to_fill = pandas.date_range(start = self.end_date, end = protocol.start_date, freq = self.sampling_interval, closed = 'left')
+                last_row = protocol.data.iloc[0]              
+                data_to_fill = pandas.DataFrame([last_row]*len(range_to_fill), index = range_to_fill)
+                protocol.data = pandas.concat([data_to_fill, protocol.data])
+
             if numpy.where(self.data.index == protocol.data.index[0])[0].size > 0:
                 index = numpy.where(self.data.index == protocol.data.index[0])[0][0]
                 for sample_1, sample_0 in enumerate(range(index, len(self.data.index))):                    
@@ -738,7 +744,7 @@ class read_protocol():
         self.cycle_days = count_days
 
 
-    def apply_filter(self, type = 'savgol', window = 5, order = 3, reverse = False):
+    def apply_filter(self, type = 'savgol', window = 5, order = 3, reverse = False, inplace = True):
         """
         Apply filters to the data. The filters available are Savitzky-Golay filter and moving average filter. The 
         Savitzky-Golay and moving average filter are a type of low-pass filter, particularly suited for smoothing noisy.
@@ -763,6 +769,8 @@ class read_protocol():
             raise TypeError("Reverse must be a boolean.")
         if not isinstance(type, str):
             raise TypeError("Type must be 'savgol' or 'moving_average.")
+        if not isinstance(inplace, bool):
+            raise TypeError("Inplace must be a boolean.")
 
         if reverse == True:
             if hasattr(self, '_old_data'):
@@ -771,14 +779,19 @@ class read_protocol():
             else:
                 raise ValueError("No filter applied to revert.")
         else:
-            if type == 'savgol':
+            print(type, inplace)
+            if type == 'savgol' and inplace == True:
                 self._old_data = self.data['values'].copy()
                 self.data['values'] = savgol_filter(self.data['values'], window, order)
-            elif type == 'moving_average':
+            elif type == 'savgol' and inplace == False:
+                return savgol_filter(self.data['values'], window, order)    
+            elif type == 'moving_average'and inplace == True:
                 self._old_data = self.data['values'].copy()
                 self.data['values'] = uniform_filter1d(self.data['values'], window, mode = 'nearest')
+            elif type == 'moving_average' and inplace == False:
+                return uniform_filter1d(self.data['values'], window, mode = 'nearest')
             else:
-                raise ValueError("Filter type must be 'savgol' or 'moving_average'.")
+                raise ValueError("Filter type must be 'savgol' or 'moving_average'. You set " + type + ".")
 
         self.filtered = "True (type: " + type + ", window: " + str(window) + ", order: " + str(order) + ")"
         self.info_text = self.make_info_text()

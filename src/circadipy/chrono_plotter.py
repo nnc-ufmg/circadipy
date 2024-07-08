@@ -128,6 +128,57 @@ def time_serie(protocol, labels = ['Time Series', 'Time (Days)', 'Amplitude'],
         with open(save_text_folder, 'w') as file:
             file.write(text)
 
+def mean_time_series(protocol, labels = ['Mean Time Series', 'Samples', 'Amplitude']):
+    '''
+    Plot the mean time series of the protocol
+
+    :param protocol: Protocol object to be vizualized
+    :type protocol: read_protocol
+    :param labels: List with the labels of the plot [title, x_label, y_label], defaults to ['Mean Time Series', 'Time (Days)', 'Amplitude']
+    :type labels: list
+    '''
+    if not isinstance(labels, list):
+        raise ValueError("labels must be a list.")
+    else:
+        if len(labels) != 3:
+            raise ValueError("labels must be a list with 3 elements (title, x_label, y_label)")
+        for label in labels:
+            if not isinstance(label, str):
+                raise ValueError("labels must be a list of strings")
+
+    title = labels[0]
+    x_label = labels[1]
+    y_label = labels[2]
+
+    protocol_name = protocol.name.replace('_', ' ').capitalize()
+
+    fig = plt.figure(figsize = (12, 5))                                                                                 # Create a figure
+    ax = fig.add_subplot(111)                                                                                           # Add a subplot
+
+    for test_label in protocol.test_labels:
+        data = protocol.data.loc[protocol.data['test_labels'] == test_label]
+        data_sum = []
+        seconds_per_day = 24*60*60
+        data_len = seconds_per_day/(1/protocol.sampling_frequency)
+        for day in data['day'].unique():
+            data_day = data.loc[data['day'] == day]['values']
+            if len(data_day) == int(data_len):
+                data_sum.append(data_day)
+
+        data_mean = numpy.mean(data_sum, axis = 0)
+        data_std = numpy.std(data_sum, axis = 0)
+
+        ax.plot(data_mean, label = test_label)                                                                          # Plot the data with noise
+        ax.fill_between(range(len(data_mean)), data_mean - data_std, data_mean + data_std, alpha = 0.3)
+
+    ax.set_xlabel(x_label)                                                                                              # Set the x label
+    ax.set_ylabel(y_label)                                                                                              # Set the y label
+    ax.set_title(title)                                                                                                 # Set the title
+    ax.legend()                                                                                                         # Add the legend
+    fig.suptitle(protocol_name)                                                                                         # Set the figure title
+
+    plt.show()
+
 def time_serie_sum_per_day(protocol, labels = ['Sum of Time Series Per Day', 'Time (Days)', 'Amplitude'], 
                            color = 'midnightblue', save_folder = None, save_suffix = '', format = 'png',
                            labels_fontsize = [14, 12, 12], ticks_fontsize = [10, 10]):
