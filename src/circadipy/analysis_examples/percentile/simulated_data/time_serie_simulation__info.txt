@@ -1,0 +1,25 @@
+Protocol name: simulation
+File: ../percentile/simulated_data/simulated_data_9_square_05.asc
+ZT 0 time: 0
+Cycle types: ['LL', 'LL']
+Cycle days: [6, 5]
+Test labels: ['1', '2']
+Consider first day: True
+Set NaNs: []
+Start date: 2022-01-01T00:00:00.000000
+End date: 2022-01-11T23:30:00.000000
+Sampling interval: 30T
+Sampling frequency: 0.0005555555555555556
+------------------------------------------------------------
+Normalized: False
+Resampled: False
+Filtered: False
+------------------------------------------------------------
+time_serie parameters:
+title: Time Series (After)
+x_label: Time (Days)
+y_label: Amplitude
+color: midnightblue
+save_folder: F:/joao_pedro/github/nnc-ufmg/circadipy/src/circadipy/analysis_examples/percentile/simulated_data
+save_suffix: 
+format: .png

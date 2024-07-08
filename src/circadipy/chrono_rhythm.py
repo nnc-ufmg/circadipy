@@ -5,6 +5,7 @@ from scipy.signal import savgol_filter, find_peaks
 import warnings
 import copy
 from CosinorPy import cosinor
+from matplotlib.lines import Line2D
 plt.ion()
 
 def positive_rad(rad):
@@ -522,7 +523,8 @@ def derivate_acrophase(best_models_per_day):
     plt.plot(acrophases_zt_smooth)
 
 def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_multiplier = 1, minimal_peak_distance = 10, 
-               plot_adjustment_lines = False, save_folder = None, save_suffix = ''):
+               plot_adjustment_lines = False, save_folder = None, save_suffix = '', format = 'png', labels = ['', 'Time (Hours)', 'Measurement'],
+               labels_fontsize = [14, 12, 12], ticks_fontsize = [10, 10]):
     """
     Get the CBT cycles
 
@@ -533,6 +535,48 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
     :param save_suffix: The suffix to add to the save file, defaults to ''
     :type save_suffix: str
     """
+    if not isinstance(labels, list):
+        raise ValueError("labels must be a list.")
+    else:
+        if len(labels) != 3:
+            raise ValueError("labels must be a list with 3 elements (title, x_label, y_label)")
+        for label in labels:
+            if not isinstance(label, str):
+                raise ValueError("labels must be a list of strings")
+    if not isinstance(save_suffix, str):
+        raise ValueError("save_suffix must be a string.")
+    if not isinstance(save_folder, str) and save_folder != None:
+        raise ValueError("save_folder must be a string or None.")
+    if not isinstance(format, str) and format != 'png' and format != 'svg':
+        raise ValueError("format must be 'png' or 'svg'.")
+    else:
+        format = '.' + format
+    if not isinstance(labels_fontsize, list):
+        raise ValueError("labels_fontsize must be a list.")
+    else:
+        if len(labels_fontsize) != 3:
+            raise ValueError("labels_fontsize must be a list with 3 elements (title, x_label, y_label)")
+        for label in labels_fontsize:
+            if not isinstance(label, int):
+                raise ValueError("labels_fontsize must be a list of integers")
+    if not isinstance(ticks_fontsize, list):
+        raise ValueError("ticks_fontsize must be a list.")
+    else:
+        if len(ticks_fontsize) != 2:
+            raise ValueError("ticks_fontsize must be a list with 2 elements (x_ticks, y_ticks)")
+        for label in ticks_fontsize:
+            if not isinstance(label, int):
+                raise ValueError("ticks_fontsize must be a list of integers")
+
+    title = labels[0]
+    title_fontsize = labels_fontsize[0]
+    x_label = labels[1]
+    x_label_fontsize = labels_fontsize[1]
+    x_label_ticks = ticks_fontsize[0]
+    y_label = labels[2]
+    y_label_fontsize = labels_fontsize[2]
+    y_label_ticks = ticks_fontsize[1]
+
     protocol_df = copy.deepcopy(protocol)
     
     sampling_frequency = protocol_df.sampling_frequency
@@ -561,8 +605,8 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
     columns = 1
     rows = len(test_labels)//columns + len(test_labels)%columns 
 
-    fig, axs = plt.subplots(rows, columns, figsize = (20, 20))
-    fig_2, axs_2 = plt.subplots(rows, columns, figsize = (20, 20))
+    fig, axs = plt.subplots(rows, columns, figsize = (12, 8))
+    fig_2, axs_2 = plt.subplots(rows, columns, figsize = (6, 8))
 
     output = pandas.DataFrame()
 
@@ -592,20 +636,21 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
 
         if plot_adjustment_lines:
             axs[count].axhline(mean_data, color = 'black', linestyle = '--', linewidth = 0.5)
-            axs[count].axhline(mean_data + std_data, color = 'black', linestyle = '--', linewidth = 0.5)
-            axs[count].axhline(mean_data - std_data, color = 'black', linestyle = '--', linewidth = 0.5)
+            axs[count].axhline(mean_data + std_multiplier*std_data, color = 'black', linestyle = '--', linewidth = 0.5)
+            axs[count].axhline(mean_data - std_multiplier*std_data, color = 'black', linestyle = '--', linewidth = 0.5)
             
         axs[count].plot(data_hours, data_values, color = 'dimgray', linewidth = 0.5)
-        axs[count].scatter(peak_indexes[test_label]/to_hour, peak_values[test_label], facecolor = 'black', edgecolor = 'black', s = 5, alpha = 0.5, zorder = 100)
-        axs[count].scatter(nadir_indexes[test_label]/to_hour, nadir_values[test_label], facecolor = 'black', edgecolor = 'black', s = 5, alpha = 0.5, zorder = 100)
+        axs[count].scatter(peak_indexes[test_label]/to_hour, peak_values[test_label], facecolor = 'black', edgecolor = 'black', s = 36, alpha = 1, zorder = 1000,  marker='^')
+        axs[count].scatter(nadir_indexes[test_label]/to_hour, nadir_values[test_label], facecolor = 'black', edgecolor = 'black', s = 36, alpha = 1, zorder = 1000,  marker='v')
 
         axs_c = axs[count].twinx()
 
         for count_nadir, (start, end) in enumerate(zip(nadir_indexes[test_label][0:-1], nadir_indexes[test_label][1:])):
             period_between_nadirs = (end - start)/to_hour
             
-            axs_c.axvline(start/to_hour, color = 'black', linestyle = '--', linewidth = 0.5)
-            axs_c.axvline(end/to_hour, color = 'black', linestyle = '--', linewidth = 0.5)
+            if count_nadir == 0:
+                axs_c.axvline(start/to_hour, color = 'black', linestyle = '--', linewidth = 1, dashes=(5, 10))
+            axs_c.axvline(end/to_hour, color = 'black', linestyle = '--', linewidth = 1, dashes=(5, 10))
 
             cumulative_data = numpy.cumsum(data_values[start:end + 1])
             axs_2[count].plot(numpy.arange(0, end-start)/to_hour, data_values[start:end], color = 'dimgray', linewidth = 0.5)
@@ -616,18 +661,18 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
             t50 = numpy.where(cumulative_data >= max_activity*0.50)[0][0]
             t75 = numpy.where(cumulative_data >= max_activity*0.75)[0][0]
 
-            axs_c.plot(numpy.arange(start, end + 1)/to_hour, cumulative_data, color = 'maroon', linewidth = 1)
-            axs_c.scatter((start + t25)/to_hour, cumulative_data[t25], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.plot(numpy.arange(start, end + 1)/to_hour, cumulative_data, color = 'maroon', linewidth = 2)
+            axs_c.scatter((start + t25)/to_hour, cumulative_data[t25], facecolor = 'maroon', edgecolor = 'maroon', s = 16, alpha = 1)
             axs_c.axvline((start + t25)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
-            axs[count].scatter((start + t25)/to_hour, data_values[start + t25], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+            axs[count].scatter((start + t25)/to_hour, data_values[start + t25], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 16, alpha = 1)
             
-            axs_c.scatter((start + t50)/to_hour, cumulative_data[t50], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.scatter((start + t50)/to_hour, cumulative_data[t50], facecolor = 'maroon', edgecolor = 'maroon', s = 16, alpha = 1)
             axs_c.axvline((start + t50)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
-            axs[count].scatter((start + t50)/to_hour, data_values[start + t50], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+            axs[count].scatter((start + t50)/to_hour, data_values[start + t50], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 16, alpha = 1)
             
-            axs_c.scatter((start + t75)/to_hour, cumulative_data[t75], facecolor = 'maroon', edgecolor = 'maroon', s = 5, alpha = 1)
+            axs_c.scatter((start + t75)/to_hour, cumulative_data[t75], facecolor = 'maroon', edgecolor = 'maroon', s = 16, alpha = 1)
             axs_c.axvline((start + t75)/to_hour, color = 'maroon', linestyle = '--', linewidth = 1)
-            axs[count].scatter((start + t75)/to_hour, data_values[start + t75], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 5, alpha = 1)
+            axs[count].scatter((start + t75)/to_hour, data_values[start + t75], facecolor = 'midnightblue', edgecolor = 'midnightblue', s = 16, alpha = 1)
 
             t25 = t25/to_hour
             t50 = t50/to_hour
@@ -635,7 +680,7 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
 
             pandas_dict = {'test_label': test_label, 'interval_inter_nadir': count_nadir, 'interval_start_hr': start/to_hour, 'interval_end_hr': end/to_hour, 'period': period_between_nadirs, 't25': t25, 't50': t50, 't75': t75}
             output = pandas.concat([output, pandas.DataFrame(pandas_dict, index = [0])], axis = 0)
-        
+
         median_t25 = numpy.median(output.loc[output['test_label'] == test_label]['t25'])
         first_quartile_t25 = numpy.percentile(output.loc[output['test_label'] == test_label]['t25'], 25)
         third_quartile_t25 = numpy.percentile(output.loc[output['test_label'] == test_label]['t25'], 75)
@@ -650,30 +695,70 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
         first_quartile_period = numpy.percentile(output.loc[output['test_label'] == test_label]['period'], 25)
         third_quartile_period = numpy.percentile(output.loc[output['test_label'] == test_label]['period'], 75)
 
-        axs_2[count].axvline(median_t25, color = 'black', linestyle = '--', linewidth = 1)
+        y_range = axs[count].get_ylim()[1] - axs[count].get_ylim()[0]
+        x_range = axs[count].get_xlim()[1] - axs[count].get_xlim()[0]
+        y_max = axs[count].get_ylim()[1]
+
+        axs_2[count].axvline(median_t25, color = 'maroon', linestyle = '--', linewidth = 1)
+        axs_2[count].text(median_t25 + 0.001*x_range, y_max, 't25', color = 'black', fontsize = x_label_ticks)
         axs_2[count].axvspan(first_quartile_t25, third_quartile_t25, color = 'maroon', alpha = 0.1)
-        axs_2[count].axvline(median_t50, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvline(median_t50, color = 'maroon', linestyle = '--', linewidth = 1)
+        axs_2[count].text(median_t50 + 0.001*x_range, y_max, 't50', color = 'black', fontsize = x_label_ticks)
         axs_2[count].axvspan(first_quartile_t50, third_quartile_t50, color = 'maroon', alpha = 0.1)
-        axs_2[count].axvline(median_t75, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvline(median_t75, color = 'maroon', linestyle = '--', linewidth = 1)
+        axs_2[count].text(median_t75 + 0.001*x_range, y_max, 't75', color = 'black', fontsize = x_label_ticks)
         axs_2[count].axvspan(first_quartile_t75, third_quartile_t75, color = 'maroon', alpha = 0.1)
-        axs_2[count].axvline(median_period, color = 'black', linestyle = '--', linewidth = 1)
+        axs_2[count].axvline(median_period, color = 'midnightblue', linestyle = '--', linewidth = 1)
+        axs_2[count].text(median_period + 0.001*x_range, y_max, 'Period', color = 'black', fontsize = x_label_ticks)
         axs_2[count].axvspan(first_quartile_period, third_quartile_period, color = 'midnightblue', alpha = 0.1)
 
         axs[count].set_title(test_label)
-        axs[count].set_ylabel('Measurement')
-        axs_c.set_ylabel('Cumulative measurement')
-        axs[-1].set_xlabel('Time (h)')
+        axs[count].set_ylabel(y_label.upper(), color = 'dimgray')
+        axs_c.set_ylabel('CUMULATIVE\n' + y_label.upper(), color = 'maroon')
+        axs[-1].set_xlabel('TIME (HOURS)')
+        fig.suptitle(title + '\n\n')
+
+        axs[count].title.set_size(title_fontsize)
+        axs[count].xaxis.label.set_size(x_label_fontsize)
+        axs[count].yaxis.label.set_size(y_label_fontsize)
+        axs_c.yaxis.label.set_size(y_label_fontsize)
+        axs[count].tick_params(axis='x', labelsize = x_label_ticks)
+        axs[count].tick_params(axis='y', labelsize = y_label_ticks)
+        axs_c.tick_params(axis='y', labelsize = y_label_ticks)
+
+        legend_elements = [Line2D([0], [0], marker = '^', color = 'black', markerfacecolor = 'black', markersize = 8, label = 'Peaks'),
+                           Line2D([0], [0], marker = 'v', color = 'black', markerfacecolor = 'black', markersize = 8, label = 'Nadirs'),
+                           Line2D([0], [0], linestyle = '--', color = 'black', label = 'Period between nadirs'),
+                           Line2D([0], [0], linestyle = '--', color = 'maroon', label = 't25, t50, t75'),
+                           Line2D([0], [0], linestyle = '-', color = 'maroon', label = 'Cumulative measurement', linewidth = 2),
+                           Line2D([0], [0], marker = 'o', color='midnightblue', markerfacecolor = 'midnightblue', markersize = 6, label = 't25, t50, t75 intersection')]
+        
+        fig.legend(handles = legend_elements, loc = 'upper right', bbox_to_anchor = (0.99, 1), fontsize = 12, frameon = False, ncol = 2)
 
         axs_2[count].set_title(test_label)
-        axs_2[count].set_ylabel('Measurement')
-        axs_2[-1].set_xlabel('Time (h)')
+        axs_2[count].set_ylabel(y_label.upper(), color = 'dimgray', fontsize = 10)
+        axs_2[-1].set_xlabel(x_label.upper())
+        axs_2[count].set_ylim(axs[count].get_ylim()[0] - 0.1*y_range, axs[count].get_ylim()[1] + 0.1*y_range)
+        
+        axs_2[count].title.set_size(title_fontsize)
+        axs_2[count].xaxis.label.set_size(x_label_fontsize)
+        axs_2[count].yaxis.label.set_size(y_label_fontsize)
+        axs_2[count].tick_params(axis='x', labelsize = x_label_ticks)
+        axs_2[count].tick_params(axis='y', labelsize = y_label_ticks)
 
         fig.tight_layout()
         fig_2.tight_layout()
 
     if save_folder != None:
-        fig.savefig(save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
-        fig_2.savefig(save_folder + '/cbt_cycles_intervals_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
+        if format != '.both':
+            fig.savefig(save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + format, backend=None)
+            fig_2.savefig(save_folder + '/cbt_cycles_intervals_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + format, backend=None)
+        else:
+            fig.savefig(save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
+            fig_2.savefig(save_folder + '/cbt_cycles_intervals_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.png', backend=None)
+            fig.savefig(save_folder + '/cbt_cycles_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.svg', backend=None)
+            fig_2.savefig(save_folder + '/cbt_cycles_intervals_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.svg', backend=None)
+            
         plt.close(fig)
         plt.close(fig_2)
 
