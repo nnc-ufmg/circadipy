@@ -522,6 +522,79 @@ def derivate_acrophase(best_models_per_day):
     plt.plot(acrophases_zt)
     plt.plot(acrophases_zt_smooth)
 
+def delta_between_periods(protocol, interval_1, intervale_2, save_folder = None, save_suffix = ''):
+    """
+    Get the delta between two periods
+
+    :param protocol: The protocol to get the delta between the two periods
+    :type protocol: protocol
+    :param interval_1: The first interval
+    :type interval_1: list
+    :param intervale_2: The second interval
+    :type intervale_2: list
+    :return: The delta between the two periods
+    :rtype: float
+    """
+    if not isinstance(interval_1, list) or not isinstance(intervale_2, list):
+        raise ValueError("interval_1 and interval_2 must be lists")
+    if len(interval_1) != 2 or len(intervale_2) != 2:
+        raise ValueError("interval_1 and interval_2 must be lists with 2 elements")
+    if not isinstance(interval_1[0], (str)) or not isinstance(interval_1[1], (str)):
+        raise ValueError("interval_1 must be a list with two elements of type str")
+    if not isinstance(intervale_2[0], (str)) or not isinstance(intervale_2[1], (str)):
+        raise ValueError("intervale_2 must be a list with two elements of type str")
+
+    data = protocol.data
+
+    protocol_name = protocol.name.replace('_', ' ').capitalize()
+
+    days = data['day'].unique()
+
+    columns = ['day', 'test_label', 'mean_interval_1', 'std_interval_1', 'mean_interval_2', 'std_interval_2', 'delta_mean']
+    result_df = pandas.DataFrame()
+
+    for day in days:
+        data_day = data.loc[data['day'] == day]
+        test_label = data_day['test_labels'].values[0]
+
+        try:
+            interval_1_data = data_day.between_time(interval_1[0], interval_1[1])
+        except:
+            raise ValueError("The interval must be in the format 'HH:MM'")
+        try:
+            interval_2_data = data_day.between_time(intervale_2[0], intervale_2[1])
+        except:
+            raise ValueError("The interval must be in the format 'HH:MM'")
+
+        data_interval_1_values = interval_1_data['values'].values
+        data_interval_2_values = interval_2_data['values'].values
+
+        mean_data_interval_1 = numpy.mean(data_interval_1_values)
+        std_data_interval_1 = numpy.std(data_interval_1_values)
+
+        mean_data_interval_2 = numpy.mean(data_interval_2_values)
+        std_data_interval_2 = numpy.std(data_interval_2_values)
+
+        delta_mean = mean_data_interval_2 - mean_data_interval_1
+
+        result_df = pandas.concat([result_df, pandas.DataFrame([[day, test_label, mean_data_interval_1, std_data_interval_1, mean_data_interval_2, std_data_interval_2, delta_mean]], columns = columns)], axis = 0)        
+    
+    if save_folder is not None:
+        save_file = save_folder + '/delta_between_periods_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '.xlsx'
+        result_df.to_excel(save_file)
+
+        text = protocol.info_text
+        text += "delta_between_periods parameters:\n"
+        text += "interval_1: " + str(interval_1) + "\n"
+        text += "interval_2: " + str(intervale_2) + "\n"
+        text += "save_folder: " + str(save_folder) + "\n"
+        text += "save_suffix: " + str(save_suffix) + "\n"
+        save_text_file = save_folder + '/delta_between_periods_' + protocol_name.lower().replace(' ', '_') + '_' + save_suffix + '_info.txt'
+        with open(save_text_file, 'w') as f:
+            f.write(text)
+    else:
+        return result_df
+
 def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_multiplier = 1, minimal_peak_distance = 10, 
                plot_adjustment_lines = False, save_folder = None, save_suffix = '', format = 'png', labels = ['', 'Time (Hours)', 'Measurement'],
                labels_fontsize = [14, 12, 12], ticks_fontsize = [10, 10]):
