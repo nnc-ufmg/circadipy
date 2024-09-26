@@ -620,7 +620,7 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
         raise ValueError("save_suffix must be a string.")
     if not isinstance(save_folder, str) and save_folder != None:
         raise ValueError("save_folder must be a string or None.")
-    if not isinstance(format, str) and format != 'png' and format != 'svg':
+    if not isinstance(format, str) and format != 'png' and format != 'svg' and format != 'both':
         raise ValueError("format must be 'png' or 'svg'.")
     else:
         format = '.' + format
