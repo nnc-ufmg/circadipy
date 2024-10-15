@@ -137,7 +137,6 @@ def _acrophase_ci_in_zt(best_models):
     return best_models
 
 def total_activity_per_day(protocol, save_folder = None, save_suffix = ''):
-    print(protocol)
     protocol_df = protocol.data[['values','day']].copy()
 
     sum_by_group = protocol_df.groupby('day')['values'].sum()
@@ -595,18 +594,44 @@ def delta_between_periods(protocol, interval_1, intervale_2, save_folder = None,
     else:
         return result_df
 
-def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_multiplier = 1, minimal_peak_distance = 10, 
-               plot_adjustment_lines = False, save_folder = None, save_suffix = '', format = 'png', labels = ['', 'Time (Hours)', 'Measurement'],
+def cbt_cycles(protocol, resample_to = '1H', resample_method = 'sum', monving_average_window = 3, std_multiplier = 1, 
+               minimal_peak_distance = 10,  minimal_peak_distance_method = 'default', plot_adjustment_lines = False, 
+               save_folder = None, save_suffix = '', format = 'png', labels = ['', 'Time (Hours)', 'Measurement'],
                labels_fontsize = [14, 12, 12], ticks_fontsize = [10, 10]):
     """
     Get the CBT cycles
 
     :param protocol: The protocol to get the CBT cycles
     :type protocol: protocol
+    :param resample_to: The time to resample the data to, defaults to '1H'
+    :type resample_to: str
+    :param resample_method: The method to resample the data, defaults to 'sum'
+    :type resample_method: str
+    :param monving_average_window: The window for the moving average, defaults to 3
+    :type monving_average_window: int
+    :param std_multiplier: The standard deviation multiplier to detect peaks, defaults to 1
+    :type std_multiplier: int
+    :param minimal_peak_distance: The minimal peak distance to detect peaks, defaults to 10. If a peak is detected 
+    within this distance, the peak with the highest value is considered
+    :type minimal_peak_distance: int
+    :param minimal_peak_distance_method: The method to use to detect the minimal peak distance, defaults to 'default'. 
+    If default, the peak detected within the minimal peak distance with the highest value is considered. If 'sequential',
+    the first peak detected within the minimal peak distance is considered.
+    :type minimal_peak_distance_method: str
+    :param plot_adjustment_lines: If True, plot the adjustment lines, defaults to False
+    :type plot_adjustment_lines: bool
     :param save_folder: The folder to save the data, defaults to None
     :type save_folder: str
-    :param save_suffix: The suffix to add to the save file, defaults to ''
+    :param save_suffix: The suffix to save the data, defaults to ''
     :type save_suffix: str
+    :param format: The format to save the data, defaults to 'png'
+    :type format: str
+    :param labels: The labels for the plot, defaults to ['', 'Time (Hours)', 'Measurement']
+    :type labels: list
+    :param labels_fontsize: The fontsize for the labels, defaults to [14, 12, 12]
+    :type labels_fontsize: list
+    :param ticks_fontsize: The fontsize for the ticks, defaults to [10, 10]
+    :type ticks_fontsize: list
     """
     if not isinstance(labels, list):
         raise ValueError("labels must be a list.")
@@ -653,14 +678,12 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
     protocol_df = copy.deepcopy(protocol)
     
     sampling_frequency = protocol_df.sampling_frequency
-    print(1/sampling_frequency)
 
-    protocol_df.resample(resample_to, method = 'sum')
+    protocol_df.resample(resample_to, method = resample_method)
     protocol_df.apply_filter('moving_average', window = monving_average_window)
     data = protocol_df.data
     
     sampling_frequency = protocol_df.sampling_frequency
-    print(1/sampling_frequency)
 
     protocol_name = protocol_df.name.replace('_', ' ').capitalize()
 
@@ -678,8 +701,8 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
     columns = 1
     rows = len(test_labels)//columns + len(test_labels)%columns 
 
-    fig, axs = plt.subplots(rows, columns, figsize = (12, 8))
-    fig_2, axs_2 = plt.subplots(rows, columns, figsize = (6, 8))
+    fig, axs = plt.subplots(rows, columns, figsize = (12, 8), sharey = True)
+    fig_2, axs_2 = plt.subplots(rows, columns, figsize = (6, 8), sharey = True, sharex = True)
 
     output = pandas.DataFrame()
 
@@ -696,8 +719,36 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
 
         distance = (minimal_peak_distance*3600)*sampling_frequency
 
-        peaks, _ = find_peaks(data_values, height = std_multiplier*std_data, distance = distance)
-        nadirs, _ = find_peaks(- data_values, height = - std_multiplier*std_data, distance = distance)
+        if minimal_peak_distance_method == 'default':
+            peaks, _ = find_peaks(data_values, height = mean_data + std_multiplier*std_data, distance = distance)
+            nadirs, _ = find_peaks(- data_values, height = - mean_data + std_multiplier*std_data, distance = distance)
+        elif minimal_peak_distance_method == 'sequential':
+            peaks, _ = find_peaks(data_values, height = mean_data + std_multiplier*std_data)
+            nadirs, _ = find_peaks(- data_values, height = - mean_data + std_multiplier*std_data)
+
+            peaks_to_eliminate = []
+            for count_1, peak_1 in enumerate(peaks):
+                if count_1 not in peaks_to_eliminate:
+                    for count_2, peak_2 in enumerate(peaks):
+                        if count_2 > count_1 and count_2 not in peaks_to_eliminate:
+                            if peak_2 - peak_1 <= distance:
+                                peaks_to_eliminate.append(count_2)
+
+            peaks = numpy.delete(peaks, peaks_to_eliminate)
+
+            nadir_to_eliminate = []
+            for count_1, nadir_1 in enumerate(nadirs):
+                if count_1 not in nadir_to_eliminate:
+                    for count_2, nadir_2 in enumerate(nadirs):
+                        if count_2 > count_1 and count_2 not in nadir_to_eliminate:
+                            if nadir_2 - nadir_1 <= distance:
+                                nadir_to_eliminate.append(count_2)
+
+            nadirs = numpy.delete(nadirs, nadir_to_eliminate)
+        
+        else:
+            raise ValueError("minimal_peak_distance_method must be 'default' or 'sequential'")
+
 
         peak_values[test_label] = data_values[peaks]
         peak_indexes[test_label] = peaks
@@ -719,7 +770,7 @@ def cbt_cycles(protocol, resample_to = '1H', monving_average_window = 3, std_mul
         axs_c = axs[count].twinx()
 
         for count_nadir, (start, end) in enumerate(zip(nadir_indexes[test_label][0:-1], nadir_indexes[test_label][1:])):
-            period_between_nadirs = (end - start)/to_hour
+            period_between_nadirs = ((end - start) - 1)/to_hour
             
             if count_nadir == 0:
                 axs_c.axvline(start/to_hour, color = 'black', linestyle = '--', linewidth = 1, dashes=(5, 10))
