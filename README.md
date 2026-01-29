@@ -84,6 +84,160 @@ After the download is completed, run the installer and follow the instructions. 
     ```console
     (circadipy_env) $ pip install circadipy
     ```
+------------------------------------------------------------------------------------------------------------------------------
+
+# Install from Source (pip)
+
+If you want to install **CircadiPy** from the source code (recommended for contributors, development, or to get the latest changes before a PyPI release), follow the steps below.
+
+> **Important notes**
+>
+> - **Use Python 3.8** in your environment (PyMICE is not compatible with Python > 3.8).
+> - On **Windows**, make sure you have **Visual Studio Build Tools** installed as described above (required to build PyMICE).
+> - These steps assume you are already inside your activated environment, e.g. `(circadipy_env)`.
+
+## Option A — Install the latest version directly from GitHub (no cloning)
+
+This option installs straight from the repository in a single command:
+
+```console
+(circadipy_env) $ pip install "git+https://github.com/nnc-ufmg/circadipy.git"
+```
+
+------------------------------------------------------------------------------------------------------------------------------
+
+## Option B — Download the ZIP and install locally (pip)
+
+This option is best if you **don’t want to use Git**. You’ll download the CircadiPy code as a **.zip**, extract it, then install it with `pip`.
+
+> **Before you start**
+>
+> * Use **Python 3.8** *(PyMICE is not compatible with Python > 3.8)*
+> * On **Windows**, install **Visual Studio Build Tools** *(required for PyMICE)*
+> * Your environment should already be created and activated (e.g. you’ll see `(circadipy_env)` in the terminal)
+
+---
+
+### Step 1 — Download the source code (ZIP)
+
+1. Open the CircadiPy repository:
+
+   * [https://github.com/nnc-ufmg/circadipy](https://github.com/nnc-ufmg/circadipy)
+2. Click the green **Code** button.
+3. Click **Download ZIP**.
+4. Save it somewhere easy to find (e.g., `Downloads`).
+
+You should now have a file like:
+
+* `circadipy-main.zip` (name may vary)
+
+---
+
+### Step 2 — Extract the ZIP
+
+1. Find the downloaded `.zip` (often in `Downloads`).
+2. Right-click → **Extract All…** (Windows) / **Extract** (macOS/Linux).
+3. Choose a destination folder (e.g., `Downloads` or `Documents`).
+4. Extract.
+
+You’ll get a folder like:
+
+* `circadipy-main/`
+
+---
+
+### Step 3 — Open a terminal in the extracted folder
+
+You must run `pip install` **inside** the extracted project folder.
+
+#### Windows (File Explorer method)
+
+1. Open the extracted folder (e.g., `circadipy-main`).
+2. Click the folder path/address bar.
+3. Type `cmd` and press **Enter**.
+
+> Alternative: right-click inside the folder → **Open in Terminal** (varies by Windows version).
+
+#### macOS / Linux
+
+1. Open the extracted folder in your file manager.
+2. Right-click → **Open Terminal Here** (wording varies).
+
+---
+
+### Step 4 — Activate your environment
+
+If you use Mamba/Conda:
+
+```console
+(base) $ mamba activate circadipy_env
+```
+
+Your prompt should show something like:
+
+```console
+(circadipy_env) $
+```
+
+---
+
+### Step 5 — Confirm you’re in the right folder
+
+List the folder contents:
+
+**Windows**
+
+```console
+(circadipy_env) $ dir
+```
+
+**macOS / Linux**
+
+```console
+(circadipy_env) $ ls
+```
+
+You should see project files like:
+
+* `README.md`
+* `pyproject.toml` **or** `setup.py`
+* a package folder like `circadipy/`
+
+If you *don’t* see these, navigate to the correct folder:
+
+```console
+(circadipy_env) $ cd path/to/circadipy-main
+```
+
+---
+
+### Step 6 — Install CircadiPy from the local source
+
+Run, with the period (`.`) at the end:
+
+```console
+(circadipy_env) $ pip install .
+```
+
+This installs CircadiPy into your active environment.
+
+---
+
+### Step 7 — Verify the installation (recommended)
+
+Run:
+
+```console
+(circadipy_env) $ python -c "import circadipy; print('CircadiPy installed successfully!')"
+```
+
+If you see:
+
+```console
+CircadiPy installed successfully!
+```
+
+✅ Everything worked.
 
 ------------------------------------------------------------------------------------------------------------------------------
 
