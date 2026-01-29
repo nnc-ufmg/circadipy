@@ -779,7 +779,6 @@ class read_protocol():
             else:
                 raise ValueError("No filter applied to revert.")
         else:
-            print(type, inplace)
             if type == 'savgol' and inplace == True:
                 self._old_data = self.data['values'].copy()
                 self.data['values'] = savgol_filter(self.data['values'], window, order)
@@ -817,7 +816,7 @@ class read_protocol():
             if type == 'zscore':
                 values = self.data['values']
                 self.data['values'] = (values - values.mean())/values.std()
-            if type == 'minmax':
+            elif type == 'minmax':
                 values = self.data['values']
                 scaler = MinMaxScaler()
                 scaler.fit(values.values.reshape(-1,1))
@@ -830,7 +829,7 @@ class read_protocol():
                     data = self.data[self.data['day'] == day]
                     values = data['values']
                     self.data.loc[data.index, 'values'] = (values - values.mean())/values.std()
-            if type == 'minmax':
+            elif type == 'minmax':
                 for day in self.data['day'].unique():
                     data = self.data[self.data['day'] == day]
                     values = data['values']
